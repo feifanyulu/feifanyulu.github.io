@@ -8,7 +8,7 @@
       <link href="/2025/02/19/TrackFM-Far-out-Compiler-Support-for-a-Far-Memory-World/"/>
       <url>/2025/02/19/TrackFM-Far-out-Compiler-Support-for-a-Far-Memory-World/</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[<p>Large memoryworkloads with favorable locality ofreference<br>can benefit by extending the memory hierarchy across ma-<br>chines. Systems that enable such far memory configurations<br>can improve application performance and overall memory<br>utilization in a cluster. There are two current alternatives<br>for software-based far memory: kernel-based and library-<br>based. Kernel-based approaches sacrifice performance to<br>achieve programmer transparency, while library-based ap-<br>proaches sacrifice programmer transparency to achieve per-<br>formance. We argue for a novel third approach, the compiler-<br>based approach, which sacrifices neither performance nor<br>programmer transparency. Modern compiler analysis and<br>transformation techniques, combined with a suitable tightly-<br>coupled runtime system, enable this approach. We describe<br>the design, implementation, and evaluation of TrackFM, a<br>new compiler-based far memory system. Through extensive<br>benchmarking, we demonstrate that TrackFM outperforms<br>kernel-based approaches by up to 2× while retaining their<br>programmer transparency, and that TrackFM can perform<br>similarly to a state-of-the-art library-based system (within<br>10%). The application is merely recompiled to reap these<br>benefits.</p>]]></content>
       
       
       <categories>
