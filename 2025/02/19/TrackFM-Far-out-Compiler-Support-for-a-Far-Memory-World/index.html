@@ -213,7 +213,7 @@
   const initWaline = (Fn, el = document, path = window.location.pathname) => {
     const waline = Fn({
       el: el.querySelector('#waline-wrap'),
-      serverURL: 'https://feifanyulu-waline.vercel.app/',
+      serverURL: 'https://feifanyulu-waline.vercel.app',
       emoji: [
         'https://unpkg.com/@waline/emojis@1.2.0/alus',
         'https://unpkg.com/@waline/emojis@1.1.0/qq',
@@ -231,9 +231,9 @@
           let formData = new FormData();
           let headers = new Headers();
           formData.append('file', file);
-          headers.set('Authorization', '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');   // 记得改自己的token，去不给的token是1234|xxxx，前面的数字和竖杠不需要，加上Bearer 变成Bearer xxxxx才能认证通过
+          headers.set('Authorization', 'Bearer tNF2Yw3qCvGXmLkePbvEpXuVwUT2eRt2Ed198ha7');   // 记得改自己的token，去不给的token是1234|xxxx，前面的数字和竖杠不需要，加上Bearer 变成Bearer xxxxx才能认证通过
           headers.set('Accept', 'application/json');
-          return fetch('https://raw.githubusercontent.com/feifanyulu/images/main/img', {    // 去不图床的API就是此链接，如果你用的其他图床就改成其他的
+          return fetch('https://7bu.top/api/v1/upload', {    // 去不图床的API就是此链接，如果你用的其他图床就改成其他的
             method: 'POST',
             headers: headers,
             body: formData,
