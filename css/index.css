@@ -3040,6 +3040,14 @@ figure.highlight pre .javascript .function {
   -ms-flex-direction: column;
   flex-direction: column;
 }
+.page #card-newest-comments {
+  -webkit-box-ordinal-group: 'desc';
+  -moz-box-ordinal-group: 'desc';
+  -o-box-ordinal-group: 'desc';
+  -ms-flex-order: 'desc';
+  -webkit-order: 'desc';
+  order: 'desc';
+}
 @-moz-keyframes more-btn-move {
   0%, 100% {
     -webkit-transform: translateX(0);
