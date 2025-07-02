@@ -1,0 +1,399 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>高效网络协议栈访问DPDK | Feifanyulu's blog</title><meta name="author" content="Lu Wu"><meta name="copyright" content="Lu Wu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="软件优化方案：Intel DPDKIntel DPDK软件优化网络处理性能 DPDK(Data Plane Development Kit)数据面的开发包：  绕过Linux的内核协议栈，使用户态直接访问内存缓冲区，进行数据包的收发和处理； 不采用中断，而是采用轮询(Poll Mode Driver, PMD)   DPDK框架图通过mmap和外设共享内存，实现零拷贝  DPDK核心思想：穷尽一切">
+<meta property="og:type" content="article">
+<meta property="og:title" content="高效网络协议栈访问DPDK">
+<meta property="og:url" content="https://feifanyulu.github.io/2025/02/24/DPDK/index.html">
+<meta property="og:site_name" content="Feifanyulu&#39;s blog">
+<meta property="og:description" content="软件优化方案：Intel DPDKIntel DPDK软件优化网络处理性能 DPDK(Data Plane Development Kit)数据面的开发包：  绕过Linux的内核协议栈，使用户态直接访问内存缓冲区，进行数据包的收发和处理； 不采用中断，而是采用轮询(Poll Mode Driver, PMD)   DPDK框架图通过mmap和外设共享内存，实现零拷贝  DPDK核心思想：穷尽一切">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://feifanyulu.github.io/img/DPDK.png">
+<meta property="article:published_time" content="2025-02-24T05:53:48.000Z">
+<meta property="article:modified_time" content="2025-07-02T03:24:51.574Z">
+<meta property="article:author" content="Lu Wu">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://feifanyulu.github.io/img/DPDK.png"><script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "高效网络协议栈访问DPDK",
+  "url": "https://feifanyulu.github.io/2025/02/24/DPDK/",
+  "image": "https://feifanyulu.github.io/img/DPDK.png",
+  "datePublished": "2025-02-24T05:53:48.000Z",
+  "dateModified": "2025-07-02T03:24:51.574Z",
+  "author": [
+    {
+      "@type": "Person",
+      "name": "Lu Wu",
+      "url": "https://feifanyulu.github.io/"
+    }
+  ]
+}</script><link rel="shortcut icon" href="/img/avatar.jpg"><link rel="canonical" href="https://feifanyulu.github.io/2025/02/24/DPDK/index.html"><link rel="preconnect" href="//cdn.jsdelivr.net"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free/css/all.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.css" media="print" onload="this.media='all'"><script>
+    (() => {
+      
+    const saveToLocal = {
+      set: (key, value, ttl) => {
+        if (!ttl) return
+        const expiry = Date.now() + ttl * 86400000
+        localStorage.setItem(key, JSON.stringify({ value, expiry }))
+      },
+      get: key => {
+        const itemStr = localStorage.getItem(key)
+        if (!itemStr) return undefined
+        const { value, expiry } = JSON.parse(itemStr)
+        if (Date.now() > expiry) {
+          localStorage.removeItem(key)
+          return undefined
+        }
+        return value
+      }
+    }
+
+    window.btf = {
+      saveToLocal,
+      getScript: (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        Object.entries(attr).forEach(([key, val]) => script.setAttribute(key, val))
+        script.onload = script.onreadystatechange = () => {
+          if (!script.readyState || /loaded|complete/.test(script.readyState)) resolve()
+        }
+        script.onerror = reject
+        document.head.appendChild(script)
+      }),
+      getCSS: (url, id) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onload = link.onreadystatechange = () => {
+          if (!link.readyState || /loaded|complete/.test(link.readyState)) resolve()
+        }
+        link.onerror = reject
+        document.head.appendChild(link)
+      }),
+      addGlobalFn: (key, fn, name = false, parent = window) => {
+        if (!false && key.startsWith('pjax')) return
+        const globalFn = parent.globalFn || {}
+        globalFn[key] = globalFn[key] || {}
+        globalFn[key][name || Object.keys(globalFn[key]).length] = fn
+        parent.globalFn = globalFn
+      }
+    }
+  
+      
+      const activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      const activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+        }
+      }
+
+      btf.activateDarkMode = activateDarkMode
+      btf.activateLightMode = activateLightMode
+
+      const theme = saveToLocal.get('theme')
+    
+          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+        
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        document.documentElement.classList.toggle('hide-aside', asideStatus === 'hide')
+      }
+    
+      
+    const detectApple = () => {
+      if (/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)) {
+        document.documentElement.classList.add('apple')
+      }
+    }
+    detectApple()
+  
+    })()
+  </script><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"未找到符合您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":false,"highlightFullpage":false,"highlightMacStyle":true},
+  copy: {
+    success: '复制成功',
+    error: '复制失败',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    post: false
+  },
+  runtime: '',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'null',
+  Snackbar: {"chs_to_cht":"已切换为繁体中文","cht_to_chs":"已切换为简体中文","day_to_night":"已切换为深色模式","night_to_day":"已切换为浅色模式","bgLight":"#49b1f5","bgDark":"#1f1f1f","position":"bottom-left"},
+  infinitegrid: {
+    js: 'https://cdn.jsdelivr.net/npm/@egjs/infinitegrid/dist/infinitegrid.min.js',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyloadPlugin: false,
+  isAnchor: false,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: '高效网络协议栈访问DPDK',
+  isHighlightShrink: true,
+  isToc: true,
+  pageType: 'post'
+}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/DPDK.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Feifanyulu's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">高效网络协议栈访问DPDK</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">高效网络协议栈访问DPDK</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-02-24T05:53:48.000Z" title="发表于 2025-02-24 13:53:48">2025-02-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-02T03:24:51.574Z" title="更新于 2025-07-02 11:24:51">2025-07-02</time></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2025/02/24/DPDK/#post-comment"><span class="waline-comment-count" data-path="/2025/02/24/DPDK/"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><h1 id="软件优化方案：Intel-DPDK"><a href="#软件优化方案：Intel-DPDK" class="headerlink" title="软件优化方案：Intel DPDK"></a>软件优化方案：Intel DPDK</h1><p>Intel DPDK软件优化网络处理性能</p>
+<p>DPDK(Data Plane Development Kit)数据面的开发包：</p>
+<ul>
+<li>绕过Linux的内核协议栈，使<strong>用户态直接访问内存缓冲区</strong>，进行数据包的收发和处理；</li>
+<li>不采用中断，而是<strong>采用轮询</strong>(Poll Mode Driver, PMD)</li>
+</ul>
+<img src="/2025/02/24/DPDK/image-20250412201029302.png" class="" title="image-20250412201029302">
+<h3 id="DPDK框架图"><a href="#DPDK框架图" class="headerlink" title="DPDK框架图"></a>DPDK框架图</h3><p>通过mmap和外设共享内存，实现零拷贝</p>
+<img src="/2025/02/24/DPDK/image-20250412201523705.png" class="" title="image-20250412201523705">
+<h3 id="DPDK核心思想：穷尽一切手段优化性能"><a href="#DPDK核心思想：穷尽一切手段优化性能" class="headerlink" title="DPDK核心思想：穷尽一切手段优化性能"></a>DPDK核心思想：穷尽一切手段优化性能</h3><ol>
+<li><strong>用户态模式下的PMD Driver</strong><ul>
+<li>去除了中断影响，减少了操作系统内核的开销，消除了IO吞吐瓶颈；</li>
+<li>避免了内核态和用户态的报文拷贝；</li>
+<li>用户态下软件崩溃，不会影响系统的稳定性；</li>
+<li>Intel提供的PMD驱动，充分利用指令和网卡的性能；</li>
+</ul>
+</li>
+<li><strong>Huge Page和内存缓冲区管理</strong><ul>
+<li>提供2M和1G的大页，减少了TLB miss，TLB Miss严重影响了报文转发性能；</li>
+<li>高效的内存缓冲区，能灵活的组织报文，包括多buffer接收，分片/重组，都能够轻松应对；</li>
+</ul>
+</li>
+<li><strong>向量指令</strong><ul>
+<li>明显的降低内存等待开销，提升CPU的流水线效率；</li>
+</ul>
+</li>
+<li><strong>避免缓存不命中</strong></li>
+<li><strong>避免分支预测错误</strong></li>
+<li><strong>控制平面与数据平面相分离</strong><ul>
+<li>内核态负责“控制平面”：内核仅负责控制指令的处理；</li>
+<li>用户态负责“数据平面”：将数据包处理、内存管理、处理器调度等任务转移到用户态空间去完成，避免繁重的模式切换；</li>
+</ul>
+</li>
+<li><strong>用多核编程代替多线程技术</strong><ul>
+<li>绑核：设置CPU亲和性，减少彼此间调度切换；</li>
+<li>无锁环形队列：解决资源竞争问题；</li>
+</ul>
+</li>
+<li><strong>CPU核尽量使用所在NUMA节点的内存</strong><ul>
+<li>避免跨NUMA内存访问；</li>
+</ul>
+</li>
+<li><strong>核心库</strong><ul>
+<li>包括系统抽象内存管理、无锁环、缓存池；</li>
+</ul>
+</li>
+<li><strong>流分类</strong><ul>
+<li>支持精准匹配、最长匹配和通配符匹配，提供常用的包处理表操作</li>
+</ul>
+</li>
+<li><strong>软件加速库</strong><ul>
+<li>一些常用的包处理软件库集合，比如IP分片、报文重组、排序等</li>
+</ul>
+</li>
+<li><strong>QoS</strong><ul>
+<li>提供网络服务质量相关组件，比如限速和调度；</li>
+</ul>
+</li>
+<li><strong>数据包分组架构</strong><ul>
+<li>提供了搭建复杂的多核流水线模型的基础组件；</li>
+</ul>
+</li>
+</ol>
+<h1 id="无锁环"><a href="#无锁环" class="headerlink" title="无锁环"></a>无锁环</h1><img src="/2025/02/24/DPDK/image-20250412204122045.png" class="" title="image-20250412204122045">
+<ul>
+<li><p>首尾相连的数组，充当缓存</p>
+</li>
+<li><p>针对多生产者、多消费者的队列</p>
+</li>
+<li><p><strong>不加锁</strong>，并行读写性能非常高</p>
+</li>
+<li><p>特殊点：元素定长，4字节或4字节的整数倍</p>
+</li>
+</ul>
+<h1 id="内存池"><a href="#内存池" class="headerlink" title="内存池"></a>内存池</h1><h2 id="内存对齐"><a href="#内存对齐" class="headerlink" title="内存对齐"></a>内存对齐</h2><p>内存条分多通道的，不同的通道空间可以同时访问</p>
+<p>双通道：每条通道连接独立的总线；</p>
+<p>内存空间需要对齐</p>
+<ul>
+<li>因为连接着相同的数据总线，所以同一通道内的数据不能被同时获取</li>
+</ul>
+<img src="/2025/02/24/DPDK/image-20250412205129702.png" class="" title="image-20250412205129702">
+<h2 id="私有缓存"><a href="#私有缓存" class="headerlink" title="私有缓存"></a>私有缓存</h2><img src="/2025/02/24/DPDK/image-20250412205530326.png" class="" title="image-20250412205530326">
+<h1 id="托普利哈希Toeplitz-Hash"><a href="#托普利哈希Toeplitz-Hash" class="headerlink" title="托普利哈希Toeplitz Hash"></a>托普利哈希Toeplitz Hash</h1><p>用于接受端数据包处理的负载均衡，尽量将数据均匀的划分到不同的CPU上，减少哈希碰撞。</p>
+<img src="/2025/02/24/DPDK/image-20250412195944075.png" class="" title="image-20250412195944075">
+<h1 id="DPDK的使用特点"><a href="#DPDK的使用特点" class="headerlink" title="DPDK的使用特点"></a>DPDK的使用特点</h1><ul>
+<li><p>DPDK本身只是2层协议栈，不提供socket接口</p>
+<ul>
+<li>适合于软件虚拟的路由场景</li>
+</ul>
+</li>
+<li><p>如果要用于应用程序，提供socket抽象</p>
+<ol>
+<li><p>类微内核方案：将DPDK+TCP/IP协议栈作为一个服务器，为每个应用单独维护socket fd和进程间的对应关系</p>
+<img src="/2025/02/24/DPDK/image-20250412210518734.png" class="" title="image-20250412210518734">
+</li>
+<li><p>LibOS方案：需要逐个应用添加协议栈支持</p>
+<img src="/2025/02/24/DPDK/image-20250412210546758.png" class="" title="image-20250412210546758">
+</li>
+<li><p>架构对比</p>
+</li>
+</ol>
+<img src="/2025/02/24/DPDK/image-20250412212445084.png" class="" title="image-20250412212445084">
+</li>
+<li><p>有更多基于DPDK开发的完整协议栈款架</p>
+<ul>
+<li>腾讯云的F-stack(<a target="_blank" rel="noopener" href="http://f-stack.org">http://f-stack.org</a>)</li>
+<li>Linux基金会的Vector packer Processor(<a target="_blank" rel="noopener" href="https://s3-docs.fd.io/vpp/22.06/#">https://s3-docs.fd.io/vpp/22.06/#</a>)</li>
+<li>mTCP(<a target="_blank" rel="noopener" href="https://github.com/mtcp-stack/mtcp">https://github.com/mtcp-stack/mtcp</a>)</li>
+</ul>
+</li>
+</ul>
+<h1 id="硬件优化方案：RDMA"><a href="#硬件优化方案：RDMA" class="headerlink" title="硬件优化方案：RDMA"></a>硬件优化方案：RDMA</h1><p>在远端无感的情况下，直接读取远端内存数据，绕开内核协议栈</p>
+<img src="/2025/02/24/DPDK/image-20250412212224603.png" class="" title="image-20250412212224603">
+<p>参考资料：</p>
+<p>视频：<a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vS421d7LT?spm_id_from=333.788.videopod.sections&amp;vd_source=93e39300d281cef5ad42ab13d4028d04">https://www.bilibili.com/video/BV1vS421d7LT?spm_id_from=333.788.videopod.sections&amp;vd_source=93e39300d281cef5ad42ab13d4028d04</a></p>
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://feifanyulu.github.io">Lu Wu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://feifanyulu.github.io/2025/02/24/DPDK/">https://feifanyulu.github.io/2025/02/24/DPDK/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://feifanyulu.github.io" target="_blank">Feifanyulu's blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/DPDK.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related" href="/2025/02/22/hexo-butterfly/" title="hexo+butterfly搭建"><img class="cover" src="/img/leaf.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">hexo+butterfly搭建</div></div><div class="info-2"><div class="info-item-1">可以在这里选择自己喜欢的风格主题：hexo官网 搭建hexo+butterfly参考资料：使用 hexo + 主题 butterfly + Github 搭建个人博客_hexo-theme-butterfly-CSDN博客 hexo命令1234hexo g #完整命令为hexo generate,用于生成静态文件hexo s #完整命令为hexo server,用于启动服务器，主要用来本地预览hexo d #完整命令为hexo deploy,用于将本地文件发布到github等git仓库上hexo n “my article” #完整命令为hexo new,用于新建一篇名为“my article”的文章 功能实现发布一篇博客1hexo new post &quot;demo&quot; 数学符号：LaTeX...</div></div></div></a><a class="pagination-related" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server"><img class="cover" src="/img/Globus.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of next post"><div class="info text-right"><div class="info-1"><div class="info-item-1">下一篇</div><div class="info-item-2">The Globus Striped GridFTP Framework and Server</div></div><div class="info-2"><div class="info-item-1">​    GridFTP对文件传输协议的扩展定义了一种安全、可靠、高性能数据移动的通用机制。这里介绍了Globus的Striped GridFTP框架，旨在支持数据密集型工具和应用程序的建设。 The Globus Striped GridFTP Framework and Server | Proceedings of the 2005 ACM/IEEE conference on Supercomputing gridftp_final.pdf Introduction 存储在二级和三级存储系统上的数据的数量和多样性以及广域网的原始容量的迅速增加，使得至少在原则上在广域网上移动大量数据是可取的和可行的。  在实践中，协调这种转移在技术上具有挑战性。  a. 经常需要在多个维度上利用并行性，包括（取决于上下文）存储系统，网络接口和骨干网络干线。 b.处理各种各样的失败。防火墙、并行文件系统和其他专用设备也会造成困难，因为需要在传输之前和/或之后转换数据。 由于这些和其他原因，快速、高效和稳健的广域端到端传输需要在多个级别管理复杂的系统。例如，在最近的工作中，我们需要32台以1...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lu Wu</div><div class="author-info-description">Maximize happiness, minimize troubles.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/feifanyulu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#%E8%BD%AF%E4%BB%B6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%EF%BC%9AIntel-DPDK"><span class="toc-number">1.</span> <span class="toc-text">软件优化方案：Intel DPDK</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DPDK%E6%A1%86%E6%9E%B6%E5%9B%BE"><span class="toc-number">1.0.1.</span> <span class="toc-text">DPDK框架图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DPDK%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3%EF%BC%9A%E7%A9%B7%E5%B0%BD%E4%B8%80%E5%88%87%E6%89%8B%E6%AE%B5%E4%BC%98%E5%8C%96%E6%80%A7%E8%83%BD"><span class="toc-number">1.0.2.</span> <span class="toc-text">DPDK核心思想：穷尽一切手段优化性能</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%97%A0%E9%94%81%E7%8E%AF"><span class="toc-number">2.</span> <span class="toc-text">无锁环</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E6%B1%A0"><span class="toc-number">3.</span> <span class="toc-text">内存池</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%86%85%E5%AD%98%E5%AF%B9%E9%BD%90"><span class="toc-number">3.1.</span> <span class="toc-text">内存对齐</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%81%E6%9C%89%E7%BC%93%E5%AD%98"><span class="toc-number">3.2.</span> <span class="toc-text">私有缓存</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%89%98%E6%99%AE%E5%88%A9%E5%93%88%E5%B8%8CToeplitz-Hash"><span class="toc-number">4.</span> <span class="toc-text">托普利哈希Toeplitz Hash</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#DPDK%E7%9A%84%E4%BD%BF%E7%94%A8%E7%89%B9%E7%82%B9"><span class="toc-number">5.</span> <span class="toc-text">DPDK的使用特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E7%A1%AC%E4%BB%B6%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88%EF%BC%9ARDMA"><span class="toc-number">6.</span> <span class="toc-text">硬件优化方案：RDMA</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议"><img src="/img/QUIC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QUIC:超越TCP的新一代网络协议"/></a><div class="content"><a class="title" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议">QUIC:超越TCP的新一代网络协议</a><time datetime="2025-03-24T05:53:48.000Z" title="发表于 2025-03-24 13:53:48">2025-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server"><img src="/img/Globus.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="The Globus Striped GridFTP Framework and Server"/></a><div class="content"><a class="title" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server">The Globus Striped GridFTP Framework and Server</a><time datetime="2025-03-20T04:37:08.000Z" title="发表于 2025-03-20 12:37:08">2025-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/24/DPDK/" title="高效网络协议栈访问DPDK"><img src="/img/DPDK.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高效网络协议栈访问DPDK"/></a><div class="content"><a class="title" href="/2025/02/24/DPDK/" title="高效网络协议栈访问DPDK">高效网络协议栈访问DPDK</a><time datetime="2025-02-24T05:53:48.000Z" title="发表于 2025-02-24 13:53:48">2025-02-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/DPDK.png);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Lu Wu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.3</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+  const loadMathjax = () => {
+    if (!window.MathJax) {
+      window.MathJax = {
+        tex: {
+          inlineMath: [['$', '$'], ['\\(', '\\)']],
+          tags: 'none',
+        },
+        chtml: {
+          scale: 1.1
+        },
+        options: {
+          enableMenu: true,
+          renderActions: {
+            findScript: [10, doc => {
+              for (const node of document.querySelectorAll('script[type^="math/tex"]')) {
+                const display = !!node.type.match(/; *mode=display/)
+                const math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display)
+                const text = document.createTextNode('')
+                node.parentNode.replaceChild(text, node)
+                math.start = {node: text, delim: '', n: 0}
+                math.end = {node: text, delim: '', n: 0}
+                doc.math.push(math)
+              }
+            }, '']
+          }
+        }
+      }
+
+      const script = document.createElement('script')
+      script.src = 'https://cdn.jsdelivr.net/npm/mathjax/es5/tex-mml-chtml.min.js'
+      script.id = 'MathJax-script'
+      script.async = true
+      document.head.appendChild(script)
+    } else {
+      MathJax.startup.document.state(0)
+      MathJax.texReset()
+      MathJax.typesetPromise()
+    }
+  }
+
+  btf.addGlobalFn('encrypt', loadMathjax, 'mathjax')
+  window.pjax ? loadMathjax() : window.addEventListener('load', loadMathjax)
+})()</script><script>(() => {
+  let initFn = window.walineFn || null
+  const isShuoshuo = GLOBAL_CONFIG_SITE.pageType === 'shuoshuo'
+  const option = {"requiredMeta":["nick","mail"],"locale":{"placeholder":"Please leave your comment"}}
+
+  const destroyWaline = ele => ele.destroy()
+
+  const initWaline = (Fn, el = document, path = window.location.pathname) => {
+    const waline = Fn({
+      el: el.querySelector('#waline-wrap'),
+      serverURL: 'https://feifanyulu-waline.vercel.app',
+      emoji: [
+        'https://unpkg.com/@waline/emojis@1.2.0/alus',
+        'https://unpkg.com/@waline/emojis@1.1.0/qq',
+        'https://unpkg.com/@waline/emojis@1.2.0/bmoji',
+        'https://unpkg.com/@waline/emojis@1.2.0/tieba',
+        'https://unpkg.com/@waline/emojis@1.2.0/weibo',
+      ],
+      pageview: false,
+      dark: 'html[data-theme="dark"]',
+      comment: true,
+      imageUploader: (file) => {
+          if (!file) {  
+            throw new Error('No file provided');  
+          }  
+          let formData = new FormData();
+          let headers = new Headers();
+          formData.append('file', file);
+          headers.set('Authorization', 'Bearer tNF2Yw3qCvGXmLkePbvEpXuVwUT2eRt2Ed198ha7');   // 记得改自己的token，去不给的token是1234|xxxx，前面的数字和竖杠不需要，加上Bearer 变成Bearer xxxxx才能认证通过
+          headers.set('Accept', 'application/json');
+          return fetch('https://7bu.top/api/v1/upload', {    // 去不图床的API就是此链接，如果你用的其他图床就改成其他的
+            method: 'POST',
+            headers: headers,
+            body: formData,
+            mode: 'cors',
+          })
+            .then((resp) => resp.json())
+            .then((resp) => resp.data.links.url);
+        },
+      ...option,
+      path: isShuoshuo ? path : (option && option.path) || path
+    })
+
+    if (isShuoshuo) {
+      window.shuoshuoComment.destroyWaline = () => {
+        destroyWaline(waline)
+        if (el.children.length) {
+          el.innerHTML = ''
+          el.classList.add('no-comment')
+        }
+      }
+    }
+  }
+
+  const loadWaline = (el, path) => {
+    if (initFn) initWaline(initFn, el, path)
+    else {
+      btf.getCSS('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.css')
+        .then(() => import('https://cdn.jsdelivr.net/npm/@waline/client/dist/waline.min.js'))
+        .then(({ init }) => {
+          initFn = init || Waline.init
+          initWaline(initFn, el, path)
+          window.walineFn = initFn
+        })
+    }
+  }
+
+  if (isShuoshuo) {
+    'Waline' === 'Waline'
+      ? window.shuoshuoComment = { loadComment: loadWaline } 
+      : window.loadOtherComment = loadWaline
+    return
+  }
+
+  if ('Waline' === 'Waline' || !false) {
+    if (false) btf.loadComment(document.getElementById('waline-wrap'),loadWaline)
+    else setTimeout(loadWaline, 0)
+  } else {
+    window.loadOtherComment = loadWaline
+  }
+})()</script></div><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
