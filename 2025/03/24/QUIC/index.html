@@ -7,9 +7,8 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://feifanyulu.github.io/img/QUIC.png">
 <meta property="article:published_time" content="2025-03-24T05:53:48.000Z">
-<meta property="article:modified_time" content="2025-04-04T13:17:35.953Z">
+<meta property="article:modified_time" content="2025-07-04T05:26:02.045Z">
 <meta property="article:author" content="Lu Wu">
-<meta property="article:tag" content="ACM SIGCOMM 2017">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://feifanyulu.github.io/img/QUIC.png"><script type="application/ld+json">{
   "@context": "https://schema.org",
@@ -18,7 +17,7 @@
   "url": "https://feifanyulu.github.io/2025/03/24/QUIC/",
   "image": "https://feifanyulu.github.io/img/QUIC.png",
   "datePublished": "2025-03-24T05:53:48.000Z",
-  "dateModified": "2025-04-04T13:17:35.953Z",
+  "dateModified": "2025-07-04T05:26:02.045Z",
   "author": [
     {
       "@type": "Person",
@@ -159,14 +158,16 @@
   isHighlightShrink: true,
   isToc: true,
   pageType: 'post'
-}</script><meta name="generator" content="Hexo 7.3.0"></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/QUIC.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Feifanyulu's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">QUIC:超越TCP的新一代网络协议</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">QUIC:超越TCP的新一代网络协议</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-24T05:53:48.000Z" title="发表于 2025-03-24 13:53:48">2025-03-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-04-04T13:17:35.953Z" title="更新于 2025-04-04 21:17:35">2025-04-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PaperNote/">PaperNote</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2025/03/24/QUIC/#post-comment"><span class="waline-comment-count" data-path="/2025/03/24/QUIC/"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>QUIC是一种加密、多路复用和低延迟的传输协议，旨在提高HTTPS流量的传输性能，并实现传输机制的快速部署和持续发展。QUIC已在Google全球数千台服务器上部署，并用于向一系列客户端提供流量，包括广泛使用的Web浏览器(Chrome)和流行的移动的视频流应用程序(YouTube)。</p>
+}</script><meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div></div></div><div class="post" id="body-wrap"><header class="post-bg" id="page-header" style="background-image: url(/img/QUIC.png);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Feifanyulu's blog</span></a><a class="nav-page-title" href="/"><span class="site-name">QUIC:超越TCP的新一代网络协议</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="post-info"><h1 class="post-title">QUIC:超越TCP的新一代网络协议</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2025-03-24T05:53:48.000Z" title="发表于 2025-03-24 13:53:48">2025-03-24</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-07-04T05:26:02.045Z" title="更新于 2025-07-04 13:26:02">2025-07-04</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/PaperNote/">PaperNote</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-pv-cv" id="" data-flag-title=""><i class="far fa-eye fa-fw post-meta-icon"></i><span class="post-meta-label">浏览量:</span><span id="busuanzi_value_page_pv"><i class="fa-solid fa-spinner fa-spin"></i></span></span><span class="post-meta-separator">|</span><span class="post-meta-commentcount"><i class="far fa-comments fa-fw post-meta-icon"></i><span class="post-meta-label">评论数:</span><a href="/2025/03/24/QUIC/#post-comment"><span class="waline-comment-count" data-path="/2025/03/24/QUIC/"><i class="fa-solid fa-spinner fa-spin"></i></span></a></span></div></div></div></header><main class="layout" id="content-inner"><div id="post"><article class="container post-content" id="article-container"><p>QUIC是一种加密、多路复用和低延迟的传输协议，旨在提高HTTPS流量的传输性能，并实现传输机制的快速部署和持续发展。QUIC已在Google全球数千台服务器上部署，并用于向一系列客户端提供流量，包括广泛使用的Web浏览器(Chrome)和流行的移动的视频流应用程序(YouTube)。</p>
 <p><a target="_blank" rel="noopener" href="https://dl.acm.org/doi/10.1145/3098822.3098842">The QUIC Transport Protocol | Proceedings of the Conference of the ACM Special Interest Group on Data Communication</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.chromium.org/quic/">QUIC，一种基于 UDP 的多路复用传输</a></p>
-<h1 id="HTTP发展史"><a href="#HTTP发展史" class="headerlink" title="HTTP发展史"></a>HTTP发展史</h1><p> <a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102561034">一文读懂 HTTP/1HTTP/2HTTP/3 - 知乎 2020-05-25</a></p>
-<p>​    从 1989 年万维网（www）诞生，HTTP（HyperText Transfer Protocol）经历了众多版本迭代，<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=110922002&amp;content_type=Article&amp;match_order=1&amp;q=WebSocket&amp;zhida_source=entity">WebSocket</a> 也在期间萌芽。1991 年 HTTP0.9 被发明。1996 年出现了 HTTP1.0。2015 年 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=110922002&amp;content_type=Article&amp;match_order=1&amp;q=HTTP2&amp;zhida_source=entity">HTTP2</a> 正式发布。2020 年 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=110922002&amp;content_type=Article&amp;match_order=1&amp;q=HTTP3&amp;zhida_source=entity">HTTP3</a> 或能正式使用。</p>
+<h1>HTTP发展史</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/102561034">一文读懂 HTTP/1HTTP/2HTTP/3 - 知乎 2020-05-25</a></p>
+<p>​	从 1989 年万维网（www）诞生，HTTP（HyperText Transfer Protocol）经历了众多版本迭代，<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=110922002&amp;content_type=Article&amp;match_order=1&amp;q=WebSocket&amp;zhida_source=entity">WebSocket</a> 也在期间萌芽。1991 年 HTTP0.9 被发明。1996 年出现了 HTTP1.0。2015 年 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=110922002&amp;content_type=Article&amp;match_order=1&amp;q=HTTP2&amp;zhida_source=entity">HTTP2</a> 正式发布。2020 年 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=110922002&amp;content_type=Article&amp;match_order=1&amp;q=HTTP3&amp;zhida_source=entity">HTTP3</a> 或能正式使用。</p>
 <img src="/2025/03/24/QUIC/image-20250330192046564.png" class="" title="image-20250330192046564">
 <ul>
-<li><p>HTTP1.1</p>
+<li>
+<p>HTTP1.1</p>
 <blockquote>
 <p>缺陷</p>
 <p>队头阻塞：一个TCP连接通道同一时刻只能处理一个请求，在当前的请求没有结束之前，其他的请求只能处于阻塞状态；</p>
@@ -175,7 +176,8 @@
 <p>不支持服务端主动推送。</p>
 </blockquote>
 </li>
-<li><p>SPDY协议</p>
+<li>
+<p>SPDY协议</p>
 <p>随着网络技术的发展，1999 年设计的 HTTP/1.1 已经不能满足需求，所以 Google 在 2009 年设计了基于 TCP 的 SPDY ，后来 SPDY 的开发组推动 SPDY 成为正式标准，不过最终没能通过。不过 SPDY 的开发组全程参与了 HTTP/2 的制定过程，参考了 SPDY 的很多设计，所以我们一般认为 SPDY 就是 HTTP/2 的前身。</p>
 <blockquote>
 <p>特性</p>
@@ -186,16 +188,19 @@
 <p>提高安全性：支持使用 HTTPS 进行加密传输。</p>
 </blockquote>
 </li>
-<li><p>HTTP2</p>
+<li>
+<p>HTTP2</p>
 <p>HTTP2 基于 SPDY，专注于性能，最大的一个目标是在用户和网站间只用一个连接。</p>
 <ul>
-<li><p>新增特性</p>
+<li>
+<p>新增特性</p>
 <blockquote>
 <p>二进制分帧：首先，HTTP2 没有改变 HTTP1 的语义，只是在应用层使用二进制分帧方式传输。因此，也引入了新的通信单位：<strong>帧、消息、流</strong>。为多路复用提供了底层支持。</p>
 <p>多路复用：一个域名对应一个连接，一个流代表了一个完整的<strong>请求-响应</strong>过程。<strong>帧</strong>是最小的数据单位，每个<strong>帧</strong>会标识出该帧属于哪个<strong>流</strong>，<strong>流</strong>也就是多个帧组成的数据流。多路复用，就是在一个 TCP 连接中可以存在多个流。</p>
 </blockquote>
 </li>
-<li><p>缺陷</p>
+<li>
+<p>缺陷</p>
 <blockquote>
 <p>TCP 以及 TCP+TLS 建立连接的延时；</p>
 <p>TCP 的队头阻塞并没有彻底解决：TCP 为了保证可靠传输，有一个“超时重传”机制，丢失的包必须等待重传确认。HTTP2 出现丢包时，整个 TCP 都要等待重传，那么就会阻塞该 TCP 连接中的所有请求。</p>
@@ -204,46 +209,55 @@
 </ul>
 </li>
 </ul>
-<h1 id="为什么需要QUIC？"><a href="#为什么需要QUIC？" class="headerlink" title="为什么需要QUIC？"></a>为什么需要QUIC？</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32553477">科普：QUIC协议原理分析 - 知乎</a></p>
+<h1>为什么需要QUIC？</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32553477">科普：QUIC协议原理分析 - 知乎</a></p>
 <p>一方面是历史悠久使用广泛的古老协议，另外一方面用户的使用场景对传输性能的要求又越来越高。如下几个由来已久的问题和矛盾就变得越来越突出。</p>
 <ol>
-<li><p>协议历史悠久导致中间设备僵化。</p>
+<li>
+<p>协议历史悠久导致中间设备僵化。</p>
 <blockquote>
 <p>TCP 协议本来是支持端口、选项及特性的增加和修改。但是由于 TCP 协议和知名端口及选项使用的历史太悠久，中间设备已经依赖于这些潜规则，所以对这些内容的修改很容易遭到中间环节的干扰而失败。</p>
 </blockquote>
 </li>
-<li><p>依赖于操作系统的实现导致协议本身僵化。</p>
+<li>
+<p>依赖于操作系统的实现导致协议本身僵化。</p>
 <blockquote>
 <p>TCP 是由操作系统在内核协议栈层面实现的，操作系统升级很麻烦，所以 TCP 的迭代却非常缓慢。</p>
 </blockquote>
 </li>
-<li><p>建立连接的握手延迟大。</p>
+<li>
+<p>建立连接的握手延迟大。</p>
 </li>
-<li><p>HTTP/没有彻底解决队头阻塞。</p>
+<li>
+<p>HTTP/没有彻底解决队头阻塞。</p>
 <blockquote>
 <p>队头阻塞主要是 TCP 协议的可靠性机制引入的。TCP 使用序列号来标识数据的顺序，数据必须按照顺序处理，如果前面的数据丢失，后面的数据就算到达了也不会通知应用层来处理。</p>
 <p>另外 TLS 协议层面也有一个队头阻塞，因为 TLS 协议都是按照 record 来处理数据的，如果一个 record 中丢失了数据，也会导致整个 record 无法正确处理。</p>
 </blockquote>
 </li>
 </ol>
-<p>​    总之，TCP 和 TLS1.2 之前的协议存在着结构性的问题，如果继续在现有的 TCP、TLS 协议之上实现一个全新的应用层协议，依赖于操作系统、中间设备还有用户的支持。部署成本非常高，阻力非常大。</p>
-<p>​    无论 SPDY 还是 HTTP/2，都是基于 TCP 的，而UDP 相比效率上存在天然的劣势，因为 UDP 本身没有连接的概念，不需要三次握手，优化了连接建立的握手延迟，同时在应用程序层面实现了 TCP 的可靠性，TLS 的安全性和 HTTP2 的并发性，只需要用户端和服务端的应用程序支持 QUIC 协议，完全避开了操作系统和中间设备的限制。所以 2013 年 Google 开发了基于 UDP 的名为 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=120012913&amp;content_type=Article&amp;match_order=1&amp;q=QUIC&amp;zhida_source=entity">QUIC</a> 的传输层协议，QUIC 全称 Quick UDP Internet Connections，希望它能替代 TCP，使得网页传输更加高效。后经<strong><a href="https://link.zhihu.com/?target=https%3A//mailarchive.ietf.org/arch/msg/quic/RLRs4nB1lwFCZ_7k0iuz0ZBa35s">提议</a></strong>，互联网工程任务组正式将基于 QUIC 协议的 HTTP （<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=120012913&amp;content_type=Article&amp;match_order=1&amp;q=HTTP+over+QUIC&amp;zhida_source=entity">HTTP over QUIC</a>）重命名为 HTTP/3。它真正“完美”地解决了“队头阻塞”问题。    </p>
+<p>​	总之，TCP 和 TLS1.2 之前的协议存在着结构性的问题，如果继续在现有的 TCP、TLS 协议之上实现一个全新的应用层协议，依赖于操作系统、中间设备还有用户的支持。部署成本非常高，阻力非常大。</p>
+<p>​	无论 SPDY 还是 HTTP/2，都是基于 TCP 的，而UDP 相比效率上存在天然的劣势，因为 UDP 本身没有连接的概念，不需要三次握手，优化了连接建立的握手延迟，同时在应用程序层面实现了 TCP 的可靠性，TLS 的安全性和 HTTP2 的并发性，只需要用户端和服务端的应用程序支持 QUIC 协议，完全避开了操作系统和中间设备的限制。所以 2013 年 Google 开发了基于 UDP 的名为 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=120012913&amp;content_type=Article&amp;match_order=1&amp;q=QUIC&amp;zhida_source=entity">QUIC</a> 的传输层协议，QUIC 全称 Quick UDP Internet Connections，希望它能替代 TCP，使得网页传输更加高效。后经**<a href="https://link.zhihu.com/?target=https%3A//mailarchive.ietf.org/arch/msg/quic/RLRs4nB1lwFCZ_7k0iuz0ZBa35s">提议</a>**，互联网工程任务组正式将基于 QUIC 协议的 HTTP （<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=120012913&amp;content_type=Article&amp;match_order=1&amp;q=HTTP+over+QUIC&amp;zhida_source=entity">HTTP over QUIC</a>）重命名为 HTTP/3。它真正“完美”地解决了“队头阻塞”问题。</p>
 <p>QUIC，你就记住两个核心：采用UDP传输层、使用TLS 1.3协议</p>
-<h1 id="QUIC生态圈发展简史"><a href="#QUIC生态圈发展简史" class="headerlink" title="QUIC生态圈发展简史"></a>QUIC生态圈发展简史</h1><p>下图是 QUIC 从创建到现在为止的一些比较重要的时间节点，2021 年，QUIC V1 即将成为 RFC，结束百花齐放的态势。</p>
+<h1>QUIC生态圈发展简史</h1>
+<p>下图是 QUIC 从创建到现在为止的一些比较重要的时间节点，2021 年，QUIC V1 即将成为 RFC，结束百花齐放的态势。</p>
 <img src="/2025/03/24/QUIC/z12q8ut8so-20250330210651057.png" class="" title="img">
-<h1 id="QUIC协议详解"><a href="#QUIC协议详解" class="headerlink" title="QUIC协议详解"></a>QUIC协议详解</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32553477">科普：QUIC协议原理分析 - 知乎</a></p>
+<h1>QUIC协议详解</h1>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/32553477">科普：QUIC协议原理分析 - 知乎</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/405387352">QUIC 协议详解 - 知乎</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/143464334">HTTP/3 原理实战 - 知乎</a></p>
 <img src="/2025/03/24/QUIC/v2-d61a62fdfb08ed3882e1018136ce6b2f_1440w.jpg" class="" title="img">
 <p>从协议栈可以看出：QUIC = HTTP/2 + TLS1.3+ UDP</p>
-<h2 id="数据包结构"><a href="#数据包结构" class="headerlink" title="数据包结构"></a>数据包结构</h2><p>一个 QUIC 数据包的格式如下：</p>
+<h2 id="数据包结构">数据包结构</h2>
+<p>一个 QUIC 数据包的格式如下：</p>
 <img src="/2025/03/24/QUIC/image-20250331152540208.png" class="" title="image-20250331152540208">
 <ul>
 <li>由header和data两部分组成：</li>
 </ul>
 <img src="/2025/03/24/QUIC/v2-60231adb6c7014c7f043712839f77ab5_1440w.jpg" class="" title="img">
 <ul>
-<li><p>Frame Type: 数据帧的类型，标识了它的用途，占用1个字节</p>
+<li>
+<p>Frame Type: 数据帧的类型，标识了它的用途，占用1个字节</p>
 <img src="/2025/03/24/QUIC/v2-eb52f6d7f4d12a2599085f62f9240162_1440w.jpg" class="" title="img">
 <blockquote>
 <p>Bit 7：必须设置为 1，表示 Stream 帧;</p>
@@ -262,7 +276,8 @@
 </ol>
 </blockquote>
 </li>
-<li><p>Payload：应用数据</p>
+<li>
+<p>Payload：应用数据</p>
 <blockquote>
 <p>Stream ID： 流 ID，用于标识数据包所属的流。后面的流量控制和多路复用会涉及到</p>
 <p>Offset：偏移量，表示该数据包在整个数据中的偏移量，用于数据排序。</p>
@@ -271,36 +286,45 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="0RTT建立连接"><a href="#0RTT建立连接" class="headerlink" title="0RTT建立连接"></a>0RTT建立连接</h2><ul>
-<li><p>0RTT建立连接</p>
+<h2 id="0rtt建立连接">0RTT建立连接</h2>
+<ul>
+<li>
+<p>0RTT建立连接</p>
 <img src="/2025/03/24/QUIC/v2-b1dfebc37d7049b2446156460dcec5c6_1440w.jpg" class="" title="img">
 <ul>
-<li><p>HTTP/2的连接需要三次握手3RTT，如果考虑会话复用，即把第一次握手算出来的对称密钥缓存起来，那么也需要 2 RTT；</p>
+<li>
+<p>HTTP/2的连接需要三次握手3RTT，如果考虑会话复用，即把第一次握手算出来的对称密钥缓存起来，那么也需要 2 RTT；</p>
 </li>
-<li><p>QUIC基于TLS1.3实现，只需在首次建立连接时需要1RTT，后续再次连接只需0RTT；</p>
+<li>
+<p>QUIC基于TLS1.3实现，只需在首次建立连接时需要1RTT，后续再次连接只需0RTT；</p>
 <blockquote>
 <p>原理：在首次连接时，客户端缓存了ServerConfig，下次建连直接使用缓存数据计算通信密钥。</p>
 </blockquote>
 </li>
 </ul>
 </li>
-<li><p>前向安全性</p>
-<p>假设攻击者记录下所有的通信数据和公开参数，一旦服务器的私钥泄漏了，那之前通信的所有数据就都可以破解了。为了解决这个问题，需要为每次会话都创建一个新的通信密钥，来保证<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=178216113&amp;content_type=Article&amp;match_order=1&amp;q=前向安全&amp;zhida_source=entity">前向安全</a>性。</p>
+<li>
+<p>前向安全性</p>
+<p>假设攻击者记录下所有的通信数据和公开参数，一旦服务器的私钥泄漏了，那之前通信的所有数据就都可以破解了。为了解决这个问题，需要为每次会话都创建一个新的通信密钥，来保证<a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=178216113&amp;content_type=Article&amp;match_order=1&amp;q=%E5%89%8D%E5%90%91%E5%AE%89%E5%85%A8&amp;zhida_source=entity">前向安全</a>性。</p>
 <img src="/2025/03/24/QUIC/image-20250331165945325.png" class="">
 <p>客户端缓存的 ServerConfig 是服务器静态配置的，是可以长期使用的。客户端通过 ServerConfig 实现 0-RTT 握手，使用会话密钥 sessionKey 保证通信数据的前向安全。QUIC不会使用复用会话密钥，每次连接都生成一个新的密钥；</p>
 <blockquote>
 <p>（1）客户端：</p>
 <ul>
-<li><p><strong>生成随机数 a</strong>，选择公开的大数 G 和 P，计算 A=a*G%P，将 A 和 G 发送给服务器，也就是 Client Hello 消息。</p>
+<li>
+<p><strong>生成随机数 a</strong>，选择公开的大数 G 和 P，计算 A=a*G%P，将 A 和 G 发送给服务器，也就是 Client Hello 消息。</p>
 </li>
-<li><p>直接使用缓存的 ServerConfig <strong>计算初始密钥 initKey</strong> (K1)= aB = ab*G%P，加密发送应用数据 1；</p>
+<li>
+<p>直接使用缓存的 ServerConfig <strong>计算初始密钥 initKey</strong> (K1)= aB = ab*G%P，加密发送应用数据 1；</p>
 </li>
 </ul>
 <p>（2）服务器：</p>
 <ul>
-<li><p>根据 Client Hello 消息<strong>解码初始密钥 initKey</strong> = bA = ba*G%P</p>
+<li>
+<p>根据 Client Hello 消息<strong>解码初始密钥 initKey</strong> = bA = ba*G%P</p>
 </li>
-<li><p><strong>生成随机数 c</strong>，计算 C=c<em>G%P，<em>*使用 initKey 加密 C</em></em>，发送给客户端，也就是 Server Hello 消息</p>
+<li>
+<p><strong>生成随机数 c</strong>，计算 C=c*G%P，<strong>使用 initKey 加密 C</strong>，发送给客户端，也就是 Server Hello 消息</p>
 </li>
 </ul>
 <p>（3）客户端：<strong>使用 initKey 解码获取 C</strong>，<strong>计算会话密钥 sessionKey</strong> (k2)= a<em>C = a</em>c*G%P，加密发送应用数据 2;</p>
@@ -308,64 +332,103 @@
 </blockquote>
 </li>
 </ul>
-<h2 id="连接迁移"><a href="#连接迁移" class="headerlink" title="连接迁移"></a>连接迁移</h2><p>什么叫连接迁移呢？</p>
-<p>​    就是当其中任何一个元素发生变化时，这条连接依然维持着，能够保持业务逻辑不中断。当然这里面主要关注的是客户端的变化，因为客户端不可控并且网络环境经常发生变化，而服务端的 IP 和端口一般都是固定的。比如大家使用手机在 WIFI 和 4G 移动网络切换时，客户端的 IP 肯定会发生变化，需要重新建立和服务端的 TCP 连接。又比如大家使用公共 NAT 出口时，有些连接竞争时需要重新绑定端口，导致客户端的端口发生变化，同样需要重新建立 TCP 连接。</p>
+<h2 id="连接迁移">连接迁移</h2>
+<p>什么叫连接迁移呢？</p>
+<p>​	就是当其中任何一个元素发生变化时，这条连接依然维持着，能够保持业务逻辑不中断。当然这里面主要关注的是客户端的变化，因为客户端不可控并且网络环境经常发生变化，而服务端的 IP 和端口一般都是固定的。比如大家使用手机在 WIFI 和 4G 移动网络切换时，客户端的 IP 肯定会发生变化，需要重新建立和服务端的 TCP 连接。又比如大家使用公共 NAT 出口时，有些连接竞争时需要重新绑定端口，导致客户端的端口发生变化，同样需要重新建立 TCP 连接。</p>
 <ul>
 <li>TCP的连接基于四元组：<code>源IP、源端口、目的IP、目的端口</code>；只要其中一个发生变化，就需要重新连接。</li>
 <li>QUIC的连接基于64位的随机数Connection ID，网络切换并不会影响Connetion ID的变化。</li>
 </ul>
 <img src="/2025/03/24/QUIC/image-20250331182407956.png" class="" title="image-20250331182407956">
-<h2 id="队头阻塞-多路复用"><a href="#队头阻塞-多路复用" class="headerlink" title="队头阻塞/多路复用"></a>队头阻塞/多路复用</h2><ul>
-<li><p>HTTP/1.1：只有上一个请求的所有数据包被传输完毕下一个请求的数据包才可以传输;</p>
+<h2 id="队头阻塞-多路复用">队头阻塞/多路复用</h2>
+<ul>
+<li>
+<p>HTTP/1.1：只有上一个请求的所有数据包被传输完毕下一个请求的数据包才可以传输;</p>
 </li>
-<li><p>HTTP/2：可以同时并行处理多个请求，每个请求被拆分为多个数据包通过一条TCP连接同时被传输。</p>
-<p>​    一个请求就对应一条流，通过 Stream ID 就可以判断该数据帧属于哪个请求，假设有 A 和 B 两个请求，对应的 Stream ID 分别为 1 和 2，那这个 TCP 连接上传输的数据大概如下：</p>
-<p><style>.imjylvuyiiij{zoom:67%;}</style><img src="/2025/03/24/QUIC/v2-33cc6b4531a4de38b94da1b2a7b6ee8a_1440w.jpg" class="imjylvuyiiij" alt="img"></p>
+<li>
+<p>HTTP/2：可以同时并行处理多个请求，每个请求被拆分为多个数据包通过一条TCP连接同时被传输。</p>
+<p>​	一个请求就对应一条流，通过 Stream ID 就可以判断该数据帧属于哪个请求，假设有 A 和 B 两个请求，对应的 Stream ID 分别为 1 和 2，那这个 TCP 连接上传输的数据大概如下：</p>
+<style>.pncckfmysfnf{zoom:67%;}</style><img src="/2025/03/24/QUIC/v2-33cc6b4531a4de38b94da1b2a7b6ee8a_1440w.jpg" class="pncckfmysfnf" alt="img">
 <p>虽然在 HTTP 应用层，可以同时发送多个请求，但是在 TCP 传输层，仍然只有 1 个滑动窗口来发送这些数据包，考虑下面的情形：</p>
-<p><style>.dkbihjytxghr{zoom:67%;}</style><img src="/2025/03/24/QUIC/v2-0454bee543863c36908765244b989a56_1440w.jpg" class="dkbihjytxghr" alt="img"></p>
+<style>.ufjblscvkhbp{zoom:67%;}</style><img src="/2025/03/24/QUIC/v2-0454bee543863c36908765244b989a56_1440w.jpg" class="ufjblscvkhbp" alt="img">
 <p>客户端发送的 5 个数据包（56789）服务器都收到了，并且回应了 5 个 ACK，但是第 5 个数据包的 ACK 丢失了，导致客户端的发送窗口无法向前移动，也就无法发送新的数据。但是如果发生丢包，应用层需要等待丢包的重传，才能继续读取后面的数据包，即使其他流的数据包已经到达仍不能处理，这整条连接会发生阻塞。这就是 TCP 层的队头阻塞问题。</p>
 <img src="/2025/03/24/QUIC/v2-2dd2a9fb8693489b9a0b24771c8a40a1_1440w.jpg" class="" title="img">
 <p>不仅如此，由于 HTTP/2 强制使用 HTTPS，而 HTTPS 使用的 TLS 协议也存在队头阻塞问题。TLS 基于 Record 组织数据，将一堆数据放在一起（即一个 Record）加密，加密完后又拆分成多个 TCP 包传输。Record 是 TLS 协议处理的最小单位，一般每个 Record 16K，包含 12 个 TCP 包。由于一个 record 必须经过数据一致性校验才能进行加解密，如果 12 个 TCP 包中有任何一个包丢失，那么整个 Record 都无法解密。<img src="/2025/03/24/QUIC/image-20250331191231592.png" class="" title="image-20250331191231592"></p>
 <p>HTTP/2 虽然通过多路复用解决了 HTTP 层的队头阻塞，但仍然存在 TCP 层的队头阻塞。</p>
 </li>
-<li><p>那 QUIC 是如何解决 TCP 层的队头阻塞问题的呢？其实很简单，HTTP/2 之所以存在 TCP 层的队头阻塞，是因为所有请求流都共享一个滑动窗口，那如果给每个请求流都分配一个独立的滑动窗口，是不是就可以解决这个问题了？QUIC 就是这么做的： </p>
+<li>
+<p>那 QUIC 是如何解决 TCP 层的队头阻塞问题的呢？其实很简单，HTTP/2 之所以存在 TCP 层的队头阻塞，是因为所有请求流都共享一个滑动窗口，那如果给每个请求流都分配一个独立的滑动窗口，是不是就可以解决这个问题了？QUIC 就是这么做的：</p>
 <ul>
-<li><p><strong>独立的逻辑流：</strong> QUIC允许在单个连接上并行传输多个逻辑数据流。每个数据流都是独立管理的，这意味着一个数据流的延迟或中断不会影响其他数据流的传输。这有助于提高网络效率，特别是在处理多个请求和响应时。</p>
+<li>
+<p><strong>独立的逻辑流：</strong> QUIC允许在单个连接上并行传输多个逻辑数据流。每个数据流都是独立管理的，这意味着一个数据流的延迟或中断不会影响其他数据流的传输。这有助于提高网络效率，特别是在处理多个请求和响应时。</p>
 </li>
-<li><p><strong>避免HOL（Head-of-Line）阻塞：</strong> QUIC通过允许多个数据流在单个连接上独立传输，解决了HOL阻塞问题。这意味着即使一个数据流遇到问题，其他数据流仍然可以继续传输，而不会受到影响。这有助于提高整体效率和性能。</p>
+<li>
+<p><strong>避免HOL（Head-of-Line）阻塞：</strong> QUIC通过允许多个数据流在单个连接上独立传输，解决了HOL阻塞问题。这意味着即使一个数据流遇到问题，其他数据流仍然可以继续传输，而不会受到影响。这有助于提高整体效率和性能。</p>
 </li>
-<li><p><strong>避免 TLS 协议存在的队头阻塞：</strong>QUIC 最基本的传输单元是 Packet，不会超过最大传输单元MTU 的大小，整个加密和认证过程都是基于 Packet 的，不会跨越多个 Packet。这样就能避免 TLS 协议存在的队头阻塞；</p>
+<li>
+<p>**避免 TLS 协议存在的队头阻塞：**QUIC 最基本的传输单元是 Packet，不会超过最大传输单元MTU 的大小，整个加密和认证过程都是基于 Packet 的，不会跨越多个 Packet。这样就能避免 TLS 协议存在的队头阻塞；</p>
 <img src="/2025/03/24/QUIC/a9f643ec240469dd7dbd3c9d4fef6d70.png" class="" title="img">
 <img src="/2025/03/24/QUIC/v2-9e649330ab729b6438a8586c8b4f1bd3_1440w.jpg" class="" title="img">
 </li>
-<li><p>当然，并不是所有的 QUIC 数据都不会受到队头阻塞的影响，比如 QUIC 当前也是使用 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=5210566&amp;content_type=Article&amp;match_order=1&amp;q=Hpack+压缩算法&amp;zhida_source=entity">Hpack 压缩算法</a> ，由于算法的限制，丢失一个头部数据时，可能遇到队头阻塞。</p>
+<li>
+<p>当然，并不是所有的 QUIC 数据都不会受到队头阻塞的影响，比如 QUIC 当前也是使用 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=5210566&amp;content_type=Article&amp;match_order=1&amp;q=Hpack+%E5%8E%8B%E7%BC%A9%E7%AE%97%E6%B3%95&amp;zhida_source=entity">Hpack 压缩算法</a> ，由于算法的限制，丢失一个头部数据时，可能遇到队头阻塞。</p>
 <blockquote>
 <p><strong>HPACK 和 QPACK 的工作原理</strong></p>
 <p>HTTP/2（HPACK）和 HTTP/3（QPACK）都使用头部压缩技术来减少请求/响应的开销，但它们的实现方式不同，主要区别在于 <strong>如何避免队头阻塞（HOL Blocking）</strong>。</p>
 <p>1、HPACK</p>
 <p>HPACK 是 HTTP/2 的头部压缩算法，它通过 <strong>静态表 + 动态表 + Huffman 编码</strong> 来减少头部大小。</p>
 <ul>
-<li><p>静态表</p>
+<li>
+<p>静态表</p>
 <p>HPACK 预定义了 61 个常见 HTTP 头部字段（如 <code>:method: GET</code>、<code>:path: /</code>），客户端和服务器可以直接引用它们的索引号，而无需传输完整字符串。</p>
-<p>| 索引 | 头部字段       | 值          |<br>| —— | ——————— | —————- |<br>| 2    | <code>:method</code>      | <code>GET</code>       |<br>| 4    | <code>:path</code>        | <code>/</code>         |<br>| 24   | <code>content-type</code> | <code>text/html</code> |</p>
+<table>
+<thead>
+<tr>
+<th>索引</th>
+<th>头部字段</th>
+<th>值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>2</td>
+<td><code>:method</code></td>
+<td><code>GET</code></td>
+</tr>
+<tr>
+<td>4</td>
+<td><code>:path</code></td>
+<td><code>/</code></td>
+</tr>
+<tr>
+<td>24</td>
+<td><code>content-type</code></td>
+<td><code>text/html</code></td>
+</tr>
+</tbody>
+</table>
 <p>如果客户端发送 <code>GET /index.html</code>，可以编码为：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">:method: GET   → 索引 2  </span><br><span class="line">:path: /index.html → 先发送索引 4（/），再发送 <span class="string">&quot;index.html&quot;</span>（Huffman 编码）</span><br></pre></td></tr></table></figure>
 </li>
-<li><p>动态表</p>
+<li>
+<p>动态表</p>
 <p>HPACK 允许客户端和服务器在通信过程中动态添加头部字段到动态表，后续请求可以引用这些索引，减少重复传输。</p>
 <p><strong>示例：</strong></p>
 <ol>
-<li><p>第一次请求：</p>
+<li>
+<p>第一次请求：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user-agent: Mozilla/5.0</span><br></pre></td></tr></table></figure>
 <p>→ 动态表新增条目（假设索引 62）。</p>
 </li>
-<li><p>第二次请求：</p>
+<li>
+<p>第二次请求：</p>
 <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">user-agent: Mozilla/5.0</span><br></pre></td></tr></table></figure>
 <p>→ 直接发送索引 62，无需再传完整字符串。</p>
 </li>
 </ol>
 </li>
-<li><p>Huffman编码</p>
+<li>
+<p>Huffman编码</p>
 <p>对于不在表中的头部字段，HPACK 使用 Huffman 编码进一步压缩字符串。</p>
 </li>
 </ul>
@@ -373,15 +436,18 @@
 <p>2、QPACK</p>
 <p>QPACK 是 HTTP/3 的头部压缩算法，针对 QUIC 的无序传输特性优化，动态表更新（Encoder Stream）和头部帧分离，避免阻塞。</p>
 <ul>
-<li><p>仍然使用静态表 + 动态表</p>
+<li>
+<p>仍然使用静态表 + 动态表</p>
 <p>QPACK 保留了 HPACK 的静态表和动态表机制，但 <strong>动态表的更新方式不同</strong>。</p>
 </li>
-<li><p>引入“单向流”管理动态表</p>
+<li>
+<p>引入“单向流”管理动态表</p>
 <p>HPACK 的动态表更新和头部帧在同一个流上传输，而 QPACK 使用 <strong>两个独立的单向流</strong>：</p>
 <p><strong>Encoder Stream（编码流）</strong>：客户端 → 服务器，用于更新动态表（新增/删除条目）。</p>
 <p><strong>Decoder Stream（解码流）</strong>：服务器 → 客户端，用于确认动态表更新是否成功。</p>
 </li>
-<li><p>允许乱序引用</p>
+<li>
+<p>允许乱序引用</p>
 <p>QPACK 允许头部帧 <strong>引用尚未确认的动态表条目</strong>，但需要额外的机制（如“相对索引”）来保证正确解码。</p>
 </li>
 </ul>
@@ -390,57 +456,72 @@
 </ul>
 </li>
 </ul>
-<h2 id="拥塞控制"><a href="#拥塞控制" class="headerlink" title="拥塞控制"></a>拥塞控制</h2><p>​    TCP 拥塞控制由 4 个核心算法组成：慢启动、拥塞避免、快速重传和快速恢复；</p>
-<p>​    QUIC 协议当前默认使用了 TCP 协议的 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=5210566&amp;content_type=Article&amp;match_order=1&amp;q=Cubic+拥塞控制算法&amp;zhida_source=entity">Cubic 拥塞控制算法</a> ，并在此基础上做了不少改进。同时也支持 CubicBytes, Reno, RenoBytes, BBR, PCC 等拥塞控制算法。下面介绍一些 QUIC 改进的拥塞控制的特性。</p>
-<h3 id="热插拔"><a href="#热插拔" class="headerlink" title="热插拔"></a>热插拔</h3><p>什么叫可插拔呢？就是能够非常灵活地生效，变更和停止。</p>
+<h2 id="拥塞控制">拥塞控制</h2>
+<p>​	TCP 拥塞控制由 4 个核心算法组成：慢启动、拥塞避免、快速重传和快速恢复；</p>
+<p>​	QUIC 协议当前默认使用了 TCP 协议的 <a target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=5210566&amp;content_type=Article&amp;match_order=1&amp;q=Cubic+%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6%E7%AE%97%E6%B3%95&amp;zhida_source=entity">Cubic 拥塞控制算法</a> ，并在此基础上做了不少改进。同时也支持 CubicBytes, Reno, RenoBytes, BBR, PCC 等拥塞控制算法。下面介绍一些 QUIC 改进的拥塞控制的特性。</p>
+<h3 id="热插拔">热插拔</h3>
+<p>什么叫可插拔呢？就是能够非常灵活地生效，变更和停止。</p>
 <ol>
-<li><p>QUIC 修改拥塞控制策略只需要在应用层操作，不需要操作系统，不需要内核支持。</p>
+<li>
+<p>QUIC 修改拥塞控制策略只需要在应用层操作，不需要操作系统，不需要内核支持。</p>
 <blockquote>
 <p>这是一个飞跃，因为传统的 TCP 拥塞控制的修改，需要在系统层面进行操作，必须要端到端的网络协议栈支持，才能实现控制效果。而内核和操作系统的部署成本非常高，升级周期很长，这在产品快速迭代，网络爆炸式增长的今天，显然有点满足不了需求。</p>
 </blockquote>
 </li>
-<li><p>QUIC 会根据不同的网络环境、用户来动态选择拥塞控制算法。即使是单个应用程序的不同连接也能支持配置不同的拥塞控制。</p>
+<li>
+<p>QUIC 会根据不同的网络环境、用户来动态选择拥塞控制算法。即使是单个应用程序的不同连接也能支持配置不同的拥塞控制。</p>
 <blockquote>
 <p>就算是一台服务器，接入的用户网络环境也千差万别，结合大数据及人工智能处理，能为各个用户提供不同的但又更加精准更加有效的拥塞控制。比如 BBR 适合，Cubic 适合。关于应用层的可插拔拥塞控制模拟，可以对 socket 上的流为对象进行实验。</p>
 </blockquote>
 </li>
-<li><p>应用程序不需要停机和升级就能实现拥塞控制的变更，我们在服务端只需要修改一下配置，reload 一下，完全不需要停止服务就能实现拥塞控制的切换。</p>
+<li>
+<p>应用程序不需要停机和升级就能实现拥塞控制的变更，我们在服务端只需要修改一下配置，reload 一下，完全不需要停止服务就能实现拥塞控制的切换。</p>
 </li>
 </ol>
-<h3 id="可靠性传输"><a href="#可靠性传输" class="headerlink" title="可靠性传输"></a>可靠性传输</h3><p>​    QUIC 同样是一个可靠的协议，它使用 Packet Number 代替了 TCP 的 sequence number，并且每个 Packet Number 都严格递增，也就是说就算 Packet N 丢失了，重传的 Packet N 的 Packet Number 已经不是 N，而是一个比 N 大的值。这样发送方接收到确认消息时就能方便地知道 ACK 对应的是原始包还是重传包的响应了。</p>
+<h3 id="可靠性传输">可靠性传输</h3>
+<p>​	QUIC 同样是一个可靠的协议，它使用 Packet Number 代替了 TCP 的 sequence number，并且每个 Packet Number 都严格递增，也就是说就算 Packet N 丢失了，重传的 Packet N 的 Packet Number 已经不是 N，而是一个比 N 大的值。这样发送方接收到确认消息时就能方便地知道 ACK 对应的是原始包还是重传包的响应了。</p>
 <p>解决了TCP重传模糊问题：TCP连接对于原始包和重传包接收到的 ACK 序号一样，客户端无法分清ACK是原始包还是重传包的响应，此时会影响RTT的采样，如果客户端认为是重传包的 ACK，但实际上是原始包的ACK，会导致采样 RTT 偏小，使得超时重传时间偏小。</p>
-<h3 id="流量控制"><a href="#流量控制" class="headerlink" title="流量控制"></a>流量控制</h3><p>TCP 会对每个 TCP 连接进行流量控制，流量控制的意思是让发送方不要发送太快，要让接收方来得及接收，不然会导致数据溢出而丢失，TCP 的流量控制主要通过滑动窗口来实现的。可以看出，拥塞控制主要是控制发送方的发送策略，<strong>但没有考虑到接收方的接收能力</strong>，流量控制是对这部分能力的补齐。QUIC考虑到接收方的接受能力；</p>
+<h3 id="流量控制">流量控制</h3>
+<p>TCP 会对每个 TCP 连接进行流量控制，流量控制的意思是让发送方不要发送太快，要让接收方来得及接收，不然会导致数据溢出而丢失，TCP 的流量控制主要通过滑动窗口来实现的。可以看出，拥塞控制主要是控制发送方的发送策略，<strong>但没有考虑到接收方的接收能力</strong>，流量控制是对这部分能力的补齐。QUIC考虑到接收方的接受能力；</p>
 <ul>
-<li><p><strong>基于 stream 和 connection 级别的流量控制。</strong></p>
+<li>
+<p><strong>基于 stream 和 connection 级别的流量控制。</strong></p>
 <p>为什么需要两类流量控制呢？主要是因为 QUIC 支持多路复用。 Stream 可以认为就是一条 HTTP 请求。 Connection 可以类比一条 TCP 连接。多路复用意味着在一条 Connetion 上会同时存在多条 Stream。</p>
 <ul>
-<li><p>基于 stream</p>
+<li>
+<p>基于 stream</p>
 <p>QUIC 接收者会通告每个流中最多想要接收到的数据的绝对字节偏移。随着数据在特定流中的发送，接收和传送，接收者发送 WINDOW_UPDATE 帧，该帧增加该流的通告偏移量限制，允许对端在该流上发送更多的数据。</p>
 </li>
-<li><p>基于连接级别的流控制</p>
+<li>
+<p>基于连接级别的流控制</p>
 <p>QUIC 还实现连接级的流控制，以限制 QUIC 接收者愿意为连接分配的总缓冲区。连接的流控制工作方式与流的流控制一样，但传送的字节和最大的接收偏移是所有流的总和。</p>
 <img src="/2025/03/24/QUIC/v2-5f2ad22131453b3fd4c6351094b6b581_1440w.jpg" class="" title="img">
 </li>
 </ul>
 </li>
-<li><p>QUIC 实现流量控制的原理比较简单：</p>
+<li>
+<p>QUIC 实现流量控制的原理比较简单：</p>
 <p>通过 window_update 帧告诉对端自己可以接收的字节数，这样发送方就不会发送超过这个数量的数据。通过 BlockFrame 告诉对端由于流量控制被阻塞了，无法发送数据。</p>
 <p>QUIC 的流量控制和 TCP 有点区别，TCP 为了保证可靠性，窗口左边沿向右滑动时的长度取决于已经确认的字节数。如果中间出现丢包，就算接收到了更大序号的 Segment，窗口也无法超过这个序列号。</p>
 </li>
-<li><p>拥塞控制是通过拥塞窗口限制发送方的数据量，避免整个网络发生拥塞。那拥塞窗口（cwnd）和滑动窗口（发送窗口：swnd，接收窗口：rwnd）有什么关系呢？</p>
+<li>
+<p>拥塞控制是通过拥塞窗口限制发送方的数据量，避免整个网络发生拥塞。那拥塞窗口（cwnd）和滑动窗口（发送窗口：swnd，接收窗口：rwnd）有什么关系呢？</p>
 <p>swnd = min（cwnd，rwnd）</p>
 <p>也就是说，发送窗口的大小是由接收窗口和拥塞窗口共同决定的。那拥塞窗口的大小是如何计算的？通过 4 个拥塞控制算法：慢启动、拥塞避免、拥塞发生、快速恢复</p>
 <ul>
-<li><p>慢启动：初始拥塞窗口大小cwnd=1，当发送方每收到一个 ACK，拥塞窗口就加 1（cwnd++）；</p>
+<li>
+<p>慢启动：初始拥塞窗口大小cwnd=1，当发送方每收到一个 ACK，拥塞窗口就加 1（cwnd++）；</p>
 <img src="/2025/03/24/QUIC/v2-54d7f3cc6ec67a9ae47fa5dfa3fccfc0_1440w.jpg" class="" title="img">
 </li>
-<li><p>拥塞避免：当拥塞窗口大小超过慢启动上限后，就会进入拥塞避免阶段。由此可知，在拥塞避免阶段，拥塞窗口是线性增长的。</p>
+<li>
+<p>拥塞避免：当拥塞窗口大小超过慢启动上限后，就会进入拥塞避免阶段。由此可知，在拥塞避免阶段，拥塞窗口是线性增长的。</p>
 <blockquote>
 <p><strong>拥塞避免算法：</strong> 当发送方每收到一个 ACK，拥塞窗口就加 1/cwnd；</p>
 </blockquote>
 <img src="/2025/03/24/QUIC/v2-1072c63fd6e97e671affe2d9346c3836_1440w.jpg" class="" title="img">
 </li>
-<li><p>拥塞发生：重传有两种(超时重传和快速重传)</p>
+<li>
+<p>拥塞发生：重传有两种(超时重传和快速重传)</p>
 <p>1、超时重传，使用的拥塞发生算法为：</p>
 <blockquote>
 <ul>
@@ -459,7 +540,8 @@
 </blockquote>
 <p>接下来就会进入快速恢复阶段。</p>
 </li>
-<li><p>快速恢复</p>
+<li>
+<p>快速恢复</p>
 <blockquote>
 <p>快速恢复算法：cwnd = ssthresh + 3（因为收到 3 个 ACK），然后进入拥塞避免阶段。</p>
 </blockquote>
@@ -467,7 +549,8 @@
 </li>
 </ul>
 </li>
-<li><p>常见算法</p>
+<li>
+<p>常见算法</p>
 <blockquote>
 <p>New Reno：基于丢包检测</p>
 <p>CUBIC：基于丢包检测</p>
@@ -476,21 +559,24 @@
 <p>和 TCP 不同的是，QUIC 是在用户空间实现的拥塞控制，可以非常灵活的设置，甚至可以为每一个请求都设置一种拥塞控制算法。</p>
 </li>
 </ul>
-<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><p><strong>加密认证的报文</strong></p>
+<h2 id="其他">其他</h2>
+<p><strong>加密认证的报文</strong></p>
 <p>TCP 协议头部没有经过任何加密和认证，所以在传输过程中很容易被中间网络设备篡改，注入和窃听。比如修改序列号、滑动窗口。这些行为有可能是出于性能优化，也有可能是主动攻击。</p>
 <p>但是 QUIC 的 packet 可以说是武装到了牙齿。除了个别报文比如 PUBLIC_RESET 和 CHLO，所有报文头部都是经过认证的，报文 Body 都是经过加密的。</p>
 <p><strong>全应用态协议栈</strong></p>
 <p>QUIC 核心逻辑都在用户态，能灵活的修改连接参数、替换拥塞算法、更改传输行为。而 TCP 核心实现在内核态，改造需要修改内核并且进行系统重启，成本极高。</p>
-<p><style>.pydeesruinac{zoom:80%;}</style><img src="/2025/03/24/QUIC/e167057a6f62b072916d4e59ac2b3694.jpeg" class="pydeesruinac" alt="img"></p>
-<h2 id="QUIC协议的缺点"><a href="#QUIC协议的缺点" class="headerlink" title="QUIC协议的缺点"></a>QUIC协议的缺点</h2><p><strong>增加了遭受攻击的脆弱性</strong></p>
-<p>​    QUIC协议更容易受到分布式拒绝服务（DDoS）攻击的威胁。因为它是无连接的，不需要像TCP那样进行三次握手，攻击者更容易发起反射和放大攻击，通过伪造源IP地址来淹没目标服务器，使其不可用。QUIC的无连接性使其更难以进行流量控制和访问控制，从而增加了DDoS攻击的可能性。</p>
+<style>.phekowkyycgp{zoom:80%;}</style><img src="/2025/03/24/QUIC/e167057a6f62b072916d4e59ac2b3694.jpeg" class="phekowkyycgp" alt="img">
+<h2 id="quic协议的缺点">QUIC协议的缺点</h2>
+<p><strong>增加了遭受攻击的脆弱性</strong></p>
+<p>​	QUIC协议更容易受到分布式拒绝服务（DDoS）攻击的威胁。因为它是无连接的，不需要像TCP那样进行三次握手，攻击者更容易发起反射和放大攻击，通过伪造源IP地址来淹没目标服务器，使其不可用。QUIC的无连接性使其更难以进行流量控制和访问控制，从而增加了DDoS攻击的可能性。</p>
 <p><strong>兼容性问题</strong></p>
-<p>​    QUIC协议相对较新，可能与某些旧设备、网络设备或防火墙不兼容。一些应用程序需要精确控制网络行为，而QUIC的新特性可能不适用于所有用例。因此，在部署QUIC时，需要考虑与现有基础设施和设备的兼容性问题。</p>
+<p>​	QUIC协议相对较新，可能与某些旧设备、网络设备或防火墙不兼容。一些应用程序需要精确控制网络行为，而QUIC的新特性可能不适用于所有用例。因此，在部署QUIC时，需要考虑与现有基础设施和设备的兼容性问题。</p>
 <p><strong>传输速率较低</strong></p>
-<p>​    尽管QUIC被设计为提供更快速和高效的数据传输，但它的传输速率可能受到加密和身份验证机制的影响。QUIC在数据包传输方面增加了额外的开销，这可能导致较小数据包的传输速率较低，尤其是在高延迟网络中。</p>
+<p>​	尽管QUIC被设计为提供更快速和高效的数据传输，但它的传输速率可能受到加密和身份验证机制的影响。QUIC在数据包传输方面增加了额外的开销，这可能导致较小数据包的传输速率较低，尤其是在高延迟网络中。</p>
 <p><strong>故障排除困难</strong></p>
-<p>​    与TCP相比，使用QUIC进行网络故障排除可能更加复杂。由于QUIC的加密和身份验证功能，诊断与数据包丢失、网络拥塞或性能问题相关的问题可能需要更高级的网络监控工具和专业知识。解决问题的难度可能增加，因为数据包内容和流量可能不可见。</p>
-<h2 id="应用场景"><a href="#应用场景" class="headerlink" title="应用场景"></a>应用场景</h2><p><strong>实时 Web 和移动应用程序</strong></p>
+<p>​	与TCP相比，使用QUIC进行网络故障排除可能更加复杂。由于QUIC的加密和身份验证功能，诊断与数据包丢失、网络拥塞或性能问题相关的问题可能需要更高级的网络监控工具和专业知识。解决问题的难度可能增加，因为数据包内容和流量可能不可见。</p>
+<h2 id="应用场景">应用场景</h2>
+<p><strong>实时 Web 和移动应用程序</strong></p>
 <p>实时通信应用程序，如视频通话、语音聊天和即时消息，需要低延迟和可靠的数据传输。QUIC通过独立的流和拥塞控制机制，提供了快速且高效的数据传输，适用于这些应用。</p>
 <p><strong>物联网设备通信</strong></p>
 <p>物联网设备通常在受限的网络环境中运行，使用TCP或MQTT等传输协议可能导致高延迟和数据包丢失。QUIC在高延迟和丢包的网络条件下表现出色，因此适用于与物联网设备的通信，提供可靠和高效的替代方案。</p>
@@ -500,23 +586,30 @@
 <p>云计算涉及通过互联网交付计算资源。QUIC可以提供低延迟和端到端加密，从而改善云应用程序的用户体验和安全性。</p>
 <p><strong>支付和电子商务应用程序</strong></p>
 <p>支付和电子商务应用程序需要安全可靠的数据传输，以保护用户的敏感信息。QUIC通过使用TLS加密和可靠的HTTP3流，为这些应用程序提供了更高的安全性和性能，同时提高了用户体验。</p>
-<h1 id="基于QUIC的相关工作"><a href="#基于QUIC的相关工作" class="headerlink" title="基于QUIC的相关工作"></a>基于QUIC的相关工作</h1><p>具体实现上，各家会有比较大的差异。虽然从协议层面上来看，IETF QUIC 传输层的通用性设计，使得它可以适配各类业务场景，但在实践中，每个企业都有自己的侧重点。比如，谷歌会更多从浏览器角度出发，微软则更侧重于 Windows 等的适配，而像阿里手机淘宝这样的 App 厂商则需要更多考虑移动端适配和性能问题。</p>
-<h2 id="腾讯TQUIC网络传输协议"><a href="#腾讯TQUIC网络传输协议" class="headerlink" title="腾讯TQUIC网络传输协议"></a>腾讯TQUIC网络传输协议</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1908451?policyId=1003">提速 30%！腾讯TQUIC 网络传输协议-腾讯云开发者社区-腾讯云 2021-12-01</a></p>
+<h1>基于QUIC的相关工作</h1>
+<p>具体实现上，各家会有比较大的差异。虽然从协议层面上来看，IETF QUIC 传输层的通用性设计，使得它可以适配各类业务场景，但在实践中，每个企业都有自己的侧重点。比如，谷歌会更多从浏览器角度出发，微软则更侧重于 Windows 等的适配，而像阿里手机淘宝这样的 App 厂商则需要更多考虑移动端适配和性能问题。</p>
+<h2 id="腾讯tquic网络传输协议">腾讯TQUIC网络传输协议</h2>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1908451?policyId=1003">提速 30%！腾讯TQUIC 网络传输协议-腾讯云开发者社区-腾讯云 2021-12-01</a></p>
 <p>腾讯核心业务用户登录耗时降低 30%，下载场景 500ms 内请求成功率从 HTTPS 的 60%提升到 90%，腾讯的移动端 APP 在弱网、跨网场景下取得媲美正常网络的用户体验。这是腾讯网关 sTGW 团队打造的 TQUIC 网络协议栈在实时通信、音视频、在线游戏、在线广告等多个腾讯业务落地取得的成果。TQUIC 基于下一代互联网传输协议 HTTP3/QUIC 深度优化，日均请求量级突破千亿次，在腾讯云 CLB、CDN 开放云客户使用。</p>
 <blockquote>
 <p>STGW团队：是腾讯内部负责开发和维护STGW(Seven-layer Traffic Gateway，七层流量网关)的核心团队</p>
 </blockquote>
 <img src="/2025/03/24/QUIC/image-20250401143536193.png" class="" title="image-20250401143536193">
-<h4 id=""><a href="#" class="headerlink" title=" "></a> </h4><h2 id="蚂蚁集团QUIC落地"><a href="#蚂蚁集团QUIC落地" class="headerlink" title="蚂蚁集团QUIC落地"></a>蚂蚁集团QUIC落地</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1822608?policyId=1004">QUIC 协议在蚂蚁落地综述-腾讯云开发者社区-腾讯云2021-05-11</a> </p>
+<h4 id="none"></h4>
+<h2 id="蚂蚁集团quic落地">蚂蚁集团QUIC落地</h2>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1822608?policyId=1004">QUIC 协议在蚂蚁落地综述-腾讯云开发者社区-腾讯云2021-05-11</a></p>
 <p>蚂蚁集团支付宝客户端团队与接入网关团队于 2018 年下半年开始在移动支付、海外加速等场景落地 QUIC。</p>
-<h3 id="一套落地框架"><a href="#一套落地框架" class="headerlink" title="一套落地框架"></a>一套落地框架</h3><p>​    蚂蚁的接入网关是基于多进程的 NGINX 开发的 (内部称为 Spanner，协议卸载的扳手)，而 UDP 在多进程编程模型上存在诸多挑战，典型的像无损升级等。为了设计一套完备的框架，我们在落地前充分考虑了服务端在云上部署上的方便性、扩展性、以及性能问题，设计了如下的落地框架以支撑不同的落地场景：</p>
+<h3 id="一套落地框架">一套落地框架</h3>
+<p>​	蚂蚁的接入网关是基于多进程的 NGINX 开发的 (内部称为 Spanner，协议卸载的扳手)，而 UDP 在多进程编程模型上存在诸多挑战，典型的像无损升级等。为了设计一套完备的框架，我们在落地前充分考虑了服务端在云上部署上的方便性、扩展性、以及性能问题，设计了如下的落地框架以支撑不同的落地场景：</p>
 <img src="/2025/03/24/QUIC/pcwxr606v9.png" class="" title="img">
 <p>在这套框架中，包括如下两个组件：</p>
 <ol>
-<li><p>QUIC LB 组件：基于 NGINX 4层 UDP Stream 模块开发，用来基于 QUIC DCID 中携带的服务端信息进行路由，以支持连接迁移。</p>
+<li>
+<p>QUIC LB 组件：基于 NGINX 4层 UDP Stream 模块开发，用来基于 QUIC DCID 中携带的服务端信息进行路由，以支持连接迁移。</p>
 </li>
-<li><p>NGINX QUIC 服务器：开发了 NGINX_QUIC_MODULE，每个 Worker 监听两种类型的端口： </p>
-<p>（1）BASE PORT ，每个 Worker 使用的相同的端口号，以 Reuseport 的形式监听，并暴露给 QUIC LB，用以接收客户端过来的第一个 RTT 中的数据包，这类包的特点是 DCID 由客户端生成，没有路由信息。 </p>
+<li>
+<p>NGINX QUIC 服务器：开发了 NGINX_QUIC_MODULE，每个 Worker 监听两种类型的端口：</p>
+<p>（1）BASE PORT ，每个 Worker 使用的相同的端口号，以 Reuseport 的形式监听，并暴露给 QUIC LB，用以接收客户端过来的第一个 RTT 中的数据包，这类包的特点是 DCID 由客户端生成，没有路由信息。</p>
 <p>（2）Working PORT，每个 Worker 使用的不同的端口号，是真正的工作端口，用以接收第一个 RTT 之后的 QUIC 包，这类包的特定是 DCID 由服务端的进程生成携带有服务端的信息。</p>
 </li>
 </ol>
@@ -526,16 +619,20 @@
 <li>在不用修改内核的情况下，完全在用户态支持 QUIC 的无损升级以及其他运维问题;</li>
 <li>支持真正意义上的 0RTT ，并可提升 0RTT 的比例;</li>
 </ol>
-<h3 id="关键技术"><a href="#关键技术" class="headerlink" title="关键技术"></a>关键技术</h3><h4 id="技术点1：优雅的支持连接迁移能力"><a href="#技术点1：优雅的支持连接迁移能力" class="headerlink" title="技术点1：优雅的支持连接迁移能力"></a>技术点1：优雅的支持连接迁移能力</h4><p>在端到端的落地过程中，因为引入了负载均衡设备，会导致在连接迁移时，所有依赖五元组 Hash 做转发或者关联 Session 的机制失效。以 LVS 为例，连接迁移后， LVS 依靠五元组寻址会导致寻址的服务器存在不一致。即便 LVS 寻址正确，当报文到达服务器时，内核根据五元组关联进程，依然会寻址出错。同时，IETF Draft 要求，连接迁移时 CID 需要更新掉，这就为仅依靠 CID 来转发的计划同样变的不可行。</p>
+<h3 id="关键技术">关键技术</h3>
+<h4 id="技术点1：优雅的支持连接迁移能力">技术点1：优雅的支持连接迁移能力</h4>
+<p>在端到端的落地过程中，因为引入了负载均衡设备，会导致在连接迁移时，所有依赖五元组 Hash 做转发或者关联 Session 的机制失效。以 LVS 为例，连接迁移后， LVS 依靠五元组寻址会导致寻址的服务器存在不一致。即便 LVS 寻址正确，当报文到达服务器时，内核根据五元组关联进程，依然会寻址出错。同时，IETF Draft 要求，连接迁移时 CID 需要更新掉，这就为仅依靠 CID 来转发的计划同样变的不可行。</p>
 <p>为了解决此问题，其设计了开篇介绍的落地框架，这里将方案做一些简化和抽象，整体思路如下图所示：</p>
 <ol>
-<li>在四层负载均衡上，设计了 QUIC LoadBalancer 的机制：<ol>
+<li>在四层负载均衡上，设计了 QUIC LoadBalancer 的机制：
+<ol>
 <li>在 QUIC 的 CID 中扩展了一些字段（ServerInfo）用来关联 QUIC Server 的 IP 和 Working Port 信息。</li>
 <li>在发生连接迁移的时候，QUIC LoadBalancer 可以依赖 CID 中的 ServerInfo 进行路由，避免依赖五元组关联 Session 导致的问题。</li>
 <li>在 CID 需要 Update 的时候，NewCID 中的 ServerInfo 保留不变，这样就避免在 CID 发生 Update 时，仅依赖 CID Hash 挑选后端导致的寻址不一致问题。</li>
 </ol>
 </li>
-<li>在 QUIC 服务器多进程工作模式上，突破了 NGINX 固有的多 Worker 监听在相同端口上的桎梏，设计了多端口监听的机制，每个 Worker 在工作端口上进行隔离，并将端口的信息携带在对 First Initial Packet 的回包的 CID 中，这样代理的好处是：<ol>
+<li>在 QUIC 服务器多进程工作模式上，突破了 NGINX 固有的多 Worker 监听在相同端口上的桎梏，设计了多端口监听的机制，每个 Worker 在工作端口上进行隔离，并将端口的信息携带在对 First Initial Packet 的回包的 CID 中，这样代理的好处是：
+<ol>
 <li>无论是否连接迁移，QUIC LB 都可以根据 ServerInfo，将报文转发到正确的进程。</li>
 <li>而业界普遍的方案是修改内核，将 Reuse port 机制改为 Reuse CID 机制，即内核根据 CID 挑选进程。即便后面可以通过 ebpf 等手段支持，但其认为这种修改内核的机制对底层过于依赖，不利于方案的大规模部署和运维，尤其在公有云上。</li>
 <li>使用独立端口，也有利于多进程模式下，UDP 无损升级问题的解决，这个我们在技术点 3 中介绍。</li>
@@ -543,7 +640,8 @@
 </li>
 </ol>
 <img src="/2025/03/24/QUIC/9y9go95j23.png" class="" title="img">
-<h4 id="技术点2：-提升0RTT握手比例"><a href="#技术点2：-提升0RTT握手比例" class="headerlink" title="技术点2： 提升0RTT握手比例"></a>技术点2： 提升0RTT握手比例</h4><p>QUIC 同样需要对握手的源地址做校验，否则便会存在 UDP 本身的 DDOS 问题，那 QUIC 是如何实现的？依赖 STK(Source Address Token) 机制。这里我们先声明下，跟 TLS 类似，QUIC 的 0RTT 握手，是建立在已经同一个服务器建立过连接的基础上，所以如果是纯的第一次连接，仍然需要一个 RTT 来获取这个 STK。</p>
+<h4 id="技术点2：-提升0rtt握手比例">技术点2： 提升0RTT握手比例</h4>
+<p>QUIC 同样需要对握手的源地址做校验，否则便会存在 UDP 本身的 DDOS 问题，那 QUIC 是如何实现的？依赖 STK(Source Address Token) 机制。这里我们先声明下，跟 TLS 类似，QUIC 的 0RTT 握手，是建立在已经同一个服务器建立过连接的基础上，所以如果是纯的第一次连接，仍然需要一个 RTT 来获取这个 STK。</p>
 <p>理论上说，只要客户端缓存了这个 STK，下次握手的时候带过来，服务端便可以直接校验通过，即实现传输层的 0RTT。但是真实的场景却存在<strong>如下两个问题</strong>：</p>
 <ol>
 <li>因为 STK 是服务端加密的，所以如果下次这个客户端路由到别的服务器上了，则这个服务器也需要可以识别出来。</li>
@@ -551,17 +649,22 @@
 </ol>
 <p>第一个问题比较好解，我们只要保证集群内的机器生成 STK 的秘钥一致即可。<strong>第二个问题，我们的解题思路是</strong>：</p>
 <ol>
-<li><p>我们在 STK 中扩展了一个 Client ID, 这个 Clinet ID 是客户端通过无线保镖黑盒生成并全局唯一不变的，类似于一个设备的 SIMID，客户端通过加密的 Trasnport Parameter 传递给服务端，服务端在 STK 中包含这个 ID。</p>
+<li>
+<p>我们在 STK 中扩展了一个 Client ID, 这个 Clinet ID 是客户端通过无线保镖黑盒生成并全局唯一不变的，类似于一个设备的 SIMID，客户端通过加密的 Trasnport Parameter 传递给服务端，服务端在 STK 中包含这个 ID。</p>
 </li>
-<li><p>如果因为 Client IP 发生变化导致校验 STK 校验失败，便会去校验 Client ID，因为 ID 对于一个 Client 是永远不变的，所以可以校验成功，当然前提是，这个客户端是真实的。为了防止 Client ID 的泄露等，我们会选择性对 Client ID 校验能力做限流保护。</p>
+<li>
+<p>如果因为 Client IP 发生变化导致校验 STK 校验失败，便会去校验 Client ID，因为 ID 对于一个 Client 是永远不变的，所以可以校验成功，当然前提是，这个客户端是真实的。为了防止 Client ID 的泄露等，我们会选择性对 Client ID 校验能力做限流保护。</p>
 <img src="/2025/03/24/QUIC/py3z9pmflw.png" class="" title="img">
 </li>
 </ol>
-<h4 id="技术点3：支持QUIC无损升级"><a href="#技术点3：支持QUIC无损升级" class="headerlink" title="技术点3：支持QUIC无损升级"></a>技术点3：支持QUIC无损升级</h4><p>设计了如下的 <strong>基于多端口轮转的无损升级方案</strong>，简单来说，我们让新老进程监听在不同的端口组并携带在 CID 中，这样 QUIC LB 就可以根据端口转发到新老进程。为了便于运维，我们采用端口轮转的方式，新老进程会在 reload N 次之后，重新开始之前选中的端口。</p>
+<h4 id="技术点3：支持quic无损升级">技术点3：支持QUIC无损升级</h4>
+<p>设计了如下的 <strong>基于多端口轮转的无损升级方案</strong>，简单来说，我们让新老进程监听在不同的端口组并携带在 CID 中，这样 QUIC LB 就可以根据端口转发到新老进程。为了便于运维，我们采用端口轮转的方式，新老进程会在 reload N 次之后，重新开始之前选中的端口。</p>
 <img src="/2025/03/24/QUIC/ijsdxqijvo.png" class="" title="img">
-<h4 id="技术点4：客户端智能选路"><a href="#技术点4：客户端智能选路" class="headerlink" title="技术点4：客户端智能选路"></a>技术点4：客户端智能选路</h4><p>在客户端上，设计了开篇介绍的 TCP 和 QUIC 相互 Backup 的链路，如下图所示，我们实时探测 TCP 链路和 QUIC 链路的 RTT、丢包率、请求完成时间、错误率等指标情况，并根据一定的量化方法对两种链路进行打分，根据评分高低，决定选择走哪种链路，从而避免寻址只走一条链路导致的问题。</p>
+<h4 id="技术点4：客户端智能选路">技术点4：客户端智能选路</h4>
+<p>在客户端上，设计了开篇介绍的 TCP 和 QUIC 相互 Backup 的链路，如下图所示，我们实时探测 TCP 链路和 QUIC 链路的 RTT、丢包率、请求完成时间、错误率等指标情况，并根据一定的量化方法对两种链路进行打分，根据评分高低，决定选择走哪种链路，从而避免寻址只走一条链路导致的问题。</p>
 <img src="/2025/03/24/QUIC/0za9e1oiti.png" class="" title="img">
-<h2 id="阿里自研XQUIC"><a href="#阿里自研XQUIC" class="headerlink" title="阿里自研XQUIC"></a>阿里自研XQUIC</h2><p>2020-08-13 <a target="_blank" rel="noopener" href="https://www.infoq.cn/article/SY0KFJ2pyJomB6sAkqls">阿里淘系自研标准化协议库XQUIC首次公开：直播高峰期卡顿可降低30%_架构_阿里巴巴淘系架构团队_InfoQ精选文章 2020-08-13</a></p>
+<h2 id="阿里自研xquic">阿里自研XQUIC</h2>
+<p>2020-08-13 <a target="_blank" rel="noopener" href="https://www.infoq.cn/article/SY0KFJ2pyJomB6sAkqls">阿里淘系自研标准化协议库XQUIC首次公开：直播高峰期卡顿可降低30%_架构_阿里巴巴淘系架构团队_InfoQ精选文章 2020-08-13</a></p>
 <p>2022-01-07 <a target="_blank" rel="noopener" href="https://www.infoq.cn/article/Ys2t7jLFRNFG9XDkeS27">阿里正式开源自研 XQUIC：已服务手淘上亿用户，网络耗时降低超 20%_开源_褚杏娟_InfoQ精选文章 2022-01-07</a></p>
 <img src="/2025/03/24/QUIC/image-20250401135223479.png" class="" title="image-20250401135223479">
 <p>阿里大淘宝技术团队在2018年年底开始研发XQUIC的实现，2020年首次对外公开分享该技术，2021年8月正式对外发布，2022年正式开源。XQUIC 是阿里巴巴淘系架构团队自研的 IETF QUIC 标准化协议库实现，在手机淘宝上进行了广泛的应用，并在多个不同类型的业务场景下取得明显的效果提升。</p>
@@ -572,11 +675,13 @@
 <p>XQUIC主要具备以下两个优势：</p>
 <ul>
 <li>协议设计方面：XQUIC 是按照 IETF QUIC 标准[1]进行的协议栈能力实现，在互通性方面，XQUIC 也在 IETF 开发者社区进行了比较充分的互通性验证[2]。在 QUIC V1 标准的基础之上，XQUIC 添加了<strong>对多路径传输的能力支持</strong>。</li>
-<li>协议实现方面：XQUIC 是跨平台的 C 库实现，当前提供对Android/iOS/Linux 平台的支持。在移动端 APP 场景，XQUIC 在 Android / iOS 双端的包大小在 300～400KB 之间，相对轻量化。同时，XQUIC 也具备高性能传输能力，针对移动性场景优化也会持续进行。关于 multipath 技术演进，具体可以点击查看大淘宝技术团队与达摩院 XG 实验室联合发表的论文(<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1145/3452296.3472893)。">https://dl.acm.org/doi/abs/10.1145/3452296.3472893)。</a></li>
+<li>协议实现方面：XQUIC 是跨平台的 C 库实现，当前提供对Android/iOS/Linux 平台的支持。在移动端 APP 场景，XQUIC 在 Android / iOS 双端的包大小在 300～400KB 之间，相对轻量化。同时，XQUIC 也具备高性能传输能力，针对移动性场景优化也会持续进行。关于 multipath 技术演进，具体可以点击查看大淘宝技术团队与达摩院 XG 实验室联合发表的论文(<a target="_blank" rel="noopener" href="https://dl.acm.org/doi/abs/10.1145/3452296.3472893">https://dl.acm.org/doi/abs/10.1145/3452296.3472893</a>)。</li>
 </ul>
 <p>XQUIC 将手淘导购 RPC 的网络耗时缩减了 17.52%~20.26%，短视频/图片的上传速度提升了 22.61%，并减少了短视频下载场景下 7~16%的视频分片下载耗时。</p>
-<h2 id="MQTT-over-QUIC：下一代物联网标准协议为消息传输场景注入新动力"><a href="#MQTT-over-QUIC：下一代物联网标准协议为消息传输场景注入新动力" class="headerlink" title="MQTT over QUIC：下一代物联网标准协议为消息传输场景注入新动力"></a>MQTT over QUIC：下一代物联网标准协议为消息传输场景注入新动力</h2><p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2061429?policyId=1004">MQTT over QUIC：下一代物联网标准协议为消息传输场景注入新动力-腾讯云开发者社区-腾讯云 2022-07-29 </a></p>
-<h3 id="QUIC在MQTT通信场景中的应用场景"><a href="#QUIC在MQTT通信场景中的应用场景" class="headerlink" title="QUIC在MQTT通信场景中的应用场景"></a>QUIC在MQTT通信场景中的应用场景</h3><p>物联网设备通常在受限的网络环境中运行，使用TCP或MQTT等传输协议可能导致高延迟和数据包丢失。QUIC在高延迟和丢包的网络条件下表现出色，因此适用于与物联网设备的通信，提供可靠和高效的替代方案。</p>
+<h2 id="mqtt-over-quic：下一代物联网标准协议为消息传输场景注入新动力">MQTT over QUIC：下一代物联网标准协议为消息传输场景注入新动力</h2>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2061429?policyId=1004">MQTT over QUIC：下一代物联网标准协议为消息传输场景注入新动力-腾讯云开发者社区-腾讯云 2022-07-29 </a></p>
+<h3 id="quic在mqtt通信场景中的应用场景">QUIC在MQTT通信场景中的应用场景</h3>
+<p>物联网设备通常在受限的网络环境中运行，使用TCP或MQTT等传输协议可能导致高延迟和数据包丢失。QUIC在高延迟和丢包的网络条件下表现出色，因此适用于与物联网设备的通信，提供可靠和高效的替代方案。</p>
 <p>MQTT 是基于 TCP 的<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/iothub?from_column=20065&amp;from=20065">物联网通信</a>协议，紧凑的报文结构能够在严重受限的硬件设备和低带宽、高延迟的网络上实现稳定传输；心跳机制、遗嘱消息、QoS 质量等级等诸多特性能够应对各种物联网场景。</p>
 <p>尽管如此，由于底层 TCP 传输协议限制，某些复杂网络环境下 MQTT 协议存在固有的弊端：</p>
 <ul>
@@ -586,33 +691,41 @@
 </ul>
 <p>例如车联网用户通常会面对类似的问题：车辆可能会运行在山区、矿场、隧道等地方，当进入到信号死角或被动切换基站时会导致连接中断，频繁连接中断与较慢的连接恢复速度会导致用户体验变差。在一些对数据传输实时性和稳定性要求较高的业务，如 L4 级别的无人驾驶中，客户需要花费大量的成本来缓解这一问题。</p>
 <p>在上述这类场景中，QUIC 低连接开销和多路径支持的特性就显示出了其优势。经过更深入的探索，我们认为 MQTT Over QUIC 可以非常好地解决这一困境 —— 基于 QUIC 0 RTT/1 RTT 重连/新建能力，能够在弱网与不固定的网络通路中有效提升用户体验。</p>
-<h3 id="EMQX-5-0-的-MQTT-over-QUIC-实现"><a href="#EMQX-5-0-的-MQTT-over-QUIC-实现" class="headerlink" title="EMQX 5.0 的 MQTT over QUIC 实现"></a>EMQX 5.0 的 MQTT over QUIC 实现</h3><p>EMQX 目前的实现将传输层换成 QUIC Stream，由客户端发起连接和创建 Stream，EMQX 和客户端在一个双向 Stream 上实现交互。</p>
+<h3 id="emqx-5-0-的-mqtt-over-quic-实现">EMQX 5.0 的 MQTT over QUIC 实现</h3>
+<p>EMQX 目前的实现将传输层换成 QUIC Stream，由客户端发起连接和创建 Stream，EMQX 和客户端在一个双向 Stream 上实现交互。</p>
 <p>考虑到复杂的网络环境，如果客户端因某种原因未能通过 QUIC 握手，建议客户端自动退回到传统 TCP 上，避免系统无法建立跟服务器的通信。</p>
-<p><style>.whmldiwstrxt{zoom:67%;}</style><img src="/2025/03/24/QUIC/image-20250330214441878.png" class="whmldiwstrxt" alt="image-20250330214441878"></p>
+<style>.nuinsnnibzeh{zoom:67%;}</style><img src="/2025/03/24/QUIC/image-20250330214441878.png" class="nuinsnnibzeh" alt="image-20250330214441878">
 <p>目前 EMQX 5.0 中已经实现了以下特性：</p>
 <ul>
-<li><strong>更高级的拥塞控制：</strong>有效降低数据丢包率，在测试中在网络波动的情况下仍能持续稳定传输数据</li>
-<li><strong>运维友好：</strong>减少大规模重连导致的开销（时间开销、客户端/服务器性能开销），减少不必要的应用层状态迁移而引发的系统过载（0 RTT）</li>
-<li><strong>更灵活的架构创新：</strong>比如 Direct server return (DSR，服务器直接返回模式)，只有入口/请求流量经过 LB，出口和响应流量绕过 LB 直接回到客户端，减少 LB 的瓶颈</li>
+<li>**更高级的拥塞控制：**有效降低数据丢包率，在测试中在网络波动的情况下仍能持续稳定传输数据</li>
+<li>**运维友好：**减少大规模重连导致的开销（时间开销、客户端/服务器性能开销），减少不必要的应用层状态迁移而引发的系统过载（0 RTT）</li>
+<li>**更灵活的架构创新：**比如 Direct server return (DSR，服务器直接返回模式)，只有入口/请求流量经过 LB，出口和响应流量绕过 LB 直接回到客户端，减少 LB 的瓶颈</li>
 <li><strong>减少握手延迟 （1 RTT）</strong></li>
-<li><strong>多路径支持，连接平滑迁移：</strong>从 4G 切换到 WIFI, 或者因为 NAT Rebinding 导致五元组发生变化，QUIC 依然可以在新的五元组上继续进行连接状态，尤其适用于网络经常性变化的移动设备</li>
-<li><strong>更敏捷的开发部署：</strong>协议栈的实现在 userspace，能够开发快速迭代</li>
-<li><strong>端到端加密：</strong>未加密的包头带有极少信息， 减少传输路径中中间节点的影响，带来更好的安全性和更可控的用户体验</li>
+<li>**多路径支持，连接平滑迁移：**从 4G 切换到 WIFI, 或者因为 NAT Rebinding 导致五元组发生变化，QUIC 依然可以在新的五元组上继续进行连接状态，尤其适用于网络经常性变化的移动设备</li>
+<li>**更敏捷的开发部署：**协议栈的实现在 userspace，能够开发快速迭代</li>
+<li>**端到端加密：**未加密的包头带有极少信息， 减少传输路径中中间节点的影响，带来更好的安全性和更可控的用户体验</li>
 </ul>
-<h3 id="更便捷的使用：NanoSDK-0-6-0"><a href="#更便捷的使用：NanoSDK-0-6-0" class="headerlink" title="更便捷的使用：NanoSDK 0.6.0"></a>更便捷的使用：NanoSDK 0.6.0</h3><p><a href="https://cloud.tencent.com/developer/tools/blog-entry?target=https%3A%2F%2Fgithub.com%2Fnanomq%2FNanoSDK%2F&amp;objectId=2061429&amp;objectType=1&amp;isNewArticle=undefined">NanoSDK</a> 0.6.0 基于 MsQuic 项目率先实现了第一个 C 语言的 MQTT over QUIC SDK。</p>
+<h3 id="更便捷的使用：nanosdk-0-6-0">更便捷的使用：NanoSDK 0.6.0</h3>
+<p><a href="https://cloud.tencent.com/developer/tools/blog-entry?target=https%3A%2F%2Fgithub.com%2Fnanomq%2FNanoSDK%2F&amp;objectId=2061429&amp;objectType=1&amp;isNewArticle=undefined">NanoSDK</a> 0.6.0 基于 MsQuic 项目率先实现了第一个 C 语言的 MQTT over QUIC SDK。</p>
 <p>NanoSDK 通过为 NNG 的传输层增加 QUIC 支持，使 MQTT、nanomsg 等协议能够从 TCP 转为 UDP，从而提供更好的物联网连接体验。其内部将 QUIC Stream 和 MQTT 连接映射绑定，并内置实现了 0 RTT 快速握手重连功能。</p>
-<h2 id="AXP-QUIC：自适应X路QUIC网络传输加速"><a href="#AXP-QUIC：自适应X路QUIC网络传输加速" class="headerlink" title="AXP-QUIC：自适应X路QUIC网络传输加速"></a>AXP-QUIC：自适应X路QUIC网络传输加速</h2><p> <a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2190257?policyId=1004">AXP-QUIC：自适应X路QUIC网络传输加速-腾讯云开发者社区-腾讯云 2022-12-10</a></p>
+<h2 id="axp-quic：自适应x路quic网络传输加速">AXP-QUIC：自适应X路QUIC网络传输加速</h2>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/2190257?policyId=1004">AXP-QUIC：自适应X路QUIC网络传输加速-腾讯云开发者社区-腾讯云 2022-12-10</a></p>
 <p>腾讯云<a target="_blank" rel="noopener" href="https://cloud.tencent.com/product/im?from_column=20065&amp;from=20065">即时通信</a>IM实现了一种网络自适应的X路QUIC传输加速技术AXP-QUIC（Adaptive X-PATH QUIC），已应用于IM SDK客户端到服务端的数据传输。该技术建立了一套客户端弱网自评估模型，根据网络链路的RTT，丢包率，吞吐量，并结合主动探测，判断终端当前是否处于弱网络环境。同时将QUIC协议和多通道传输技术相结合，根据终端所处的网络环境，实时自动决定切换网络链路或使用多链路进行传输。<strong>通过AXP-QUIC技术，即时通信IM能够在70%丢包的弱网络环境下，保证消息100%可靠传输，且不大幅度增加消息延时。</strong></p>
-<h2 id="微软-MsQUIC"><a href="#微软-MsQUIC" class="headerlink" title="微软 MsQUIC"></a>微软 MsQUIC</h2><p><a target="_blank" rel="noopener" href="https://github.com/microsoft/msquic">https://github.com/microsoft/msquic</a> </p>
+<h2 id="微软-msquic">微软 MsQUIC</h2>
+<p><a target="_blank" rel="noopener" href="https://github.com/microsoft/msquic">https://github.com/microsoft/msquic</a></p>
 <p>MsQuic 是微软开源的一个 QUIC 协议的实现，采用 C 语言编写。核心是遵循一系列 RFC 标准，包括QUIC基础框架（RFC 9000-9002）、连接迁移（RFC 9221）以及最新的性能改进草案。该项目旨在提供一个跨平台的、通用的 QUIC 协议库，同时提供了 C++ API 的包装类，并支持与 Rust 和 C# 的互操作性。</p>
 <ul>
-<li><p>根据项目文档的最新更新，以下是一些主要的更新内容：</p>
+<li>
+<p>根据项目文档的最新更新，以下是一些主要的更新内容：</p>
 <blockquote>
-<p><strong>性能优化</strong>：对客户端和服务器进行了优化，以提高吞吐量和降低延迟。<br><strong>异步 IO 支持</strong>：提升数据处理效率。<br><strong>接收侧扩展（RSS）支持</strong>：增加网络数据处理能力。<br><strong>UDP 发送和接收合并支持</strong>：优化了 UDP 数据包的处理。</p>
+<p><strong>性能优化</strong>：对客户端和服务器进行了优化，以提高吞吐量和降低延迟。<br>
+<strong>异步 IO 支持</strong>：提升数据处理效率。<br>
+<strong>接收侧扩展（RSS）支持</strong>：增加网络数据处理能力。<br>
+<strong>UDP 发送和接收合并支持</strong>：优化了 UDP 数据包的处理。</p>
 </blockquote>
 </li>
 </ul>
-</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://feifanyulu.github.io">Lu Wu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://feifanyulu.github.io/2025/03/24/QUIC/">https://feifanyulu.github.io/2025/03/24/QUIC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://feifanyulu.github.io" target="_blank">Feifanyulu's blog</a>！</span></div></div><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/ACM-SIGCOMM-2017/">ACM SIGCOMM 2017</a></div><div class="post-share"><div class="social-share" data-image="/img/QUIC.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server"><img class="cover" src="/img/Globus.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">The Globus Striped GridFTP Framework and Server</div></div><div class="info-2"><div class="info-item-1">​    GridFTP对文件传输协议的扩展定义了一种安全、可靠、高性能数据移动的通用机制。这里介绍了Globus的Striped GridFTP框架，旨在支持数据密集型工具和应用程序的建设。 The Globus Striped GridFTP Framework and Server | Proceedings of the 2005 ACM/IEEE conference on Supercomputing gridftp_final.pdf Introduction 存储在二级和三级存储系统上的数据的数量和多样性以及广域网的原始容量的迅速增加，使得至少在原则上在广域网上移动大量数据是可取的和可行的。  在实践中，协调这种转移在技术上具有挑战性。  a. 经常需要在多个维度上利用并行性，包括（取决于上下文）存储系统，网络接口和骨干网络干线。 b.处理各种各样的失败。防火墙、并行文件系统和其他专用设备也会造成困难，因为需要在传输之前和/或之后转换数据。 由于这些和其他原因，快速、高效和稳健的广域端到端传输需要在多个级别管理复杂的系统。例如，在最近的工作中，我们需要32台以1...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lu Wu</div><div class="author-info-description">Maximize happiness, minimize troubles.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">6</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">2</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/feifanyulu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP%E5%8F%91%E5%B1%95%E5%8F%B2"><span class="toc-number">1.</span> <span class="toc-text">HTTP发展史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81QUIC%EF%BC%9F"><span class="toc-number">2.</span> <span class="toc-text">为什么需要QUIC？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#QUIC%E7%94%9F%E6%80%81%E5%9C%88%E5%8F%91%E5%B1%95%E7%AE%80%E5%8F%B2"><span class="toc-number">3.</span> <span class="toc-text">QUIC生态圈发展简史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#QUIC%E5%8D%8F%E8%AE%AE%E8%AF%A6%E8%A7%A3"><span class="toc-number">4.</span> <span class="toc-text">QUIC协议详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.</span> <span class="toc-text">数据包结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0RTT%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.2.</span> <span class="toc-text">0RTT建立连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E8%BF%81%E7%A7%BB"><span class="toc-number">4.3.</span> <span class="toc-text">连接迁移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%9F%E5%A4%B4%E9%98%BB%E5%A1%9E-%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">4.4.</span> <span class="toc-text">队头阻塞&#x2F;多路复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="toc-number">4.5.</span> <span class="toc-text">拥塞控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E6%8F%92%E6%8B%94"><span class="toc-number">4.5.1.</span> <span class="toc-text">热插拔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E4%BC%A0%E8%BE%93"><span class="toc-number">4.5.2.</span> <span class="toc-text">可靠性传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-number">4.5.3.</span> <span class="toc-text">流量控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">4.6.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#QUIC%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">4.7.</span> <span class="toc-text">QUIC协议的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">4.8.</span> <span class="toc-text">应用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8EQUIC%E7%9A%84%E7%9B%B8%E5%85%B3%E5%B7%A5%E4%BD%9C"><span class="toc-number">5.</span> <span class="toc-text">基于QUIC的相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%85%BE%E8%AE%AFTQUIC%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.1.</span> <span class="toc-text">腾讯TQUIC网络传输协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link"><span class="toc-number">5.1.0.1.</span> <span class="toc-text"> </span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%9A%82%E8%9A%81%E9%9B%86%E5%9B%A2QUIC%E8%90%BD%E5%9C%B0"><span class="toc-number">5.2.</span> <span class="toc-text">蚂蚁集团QUIC落地</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E5%A5%97%E8%90%BD%E5%9C%B0%E6%A1%86%E6%9E%B6"><span class="toc-number">5.2.1.</span> <span class="toc-text">一套落地框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF"><span class="toc-number">5.2.2.</span> <span class="toc-text">关键技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B91%EF%BC%9A%E4%BC%98%E9%9B%85%E7%9A%84%E6%94%AF%E6%8C%81%E8%BF%9E%E6%8E%A5%E8%BF%81%E7%A7%BB%E8%83%BD%E5%8A%9B"><span class="toc-number">5.2.2.1.</span> <span class="toc-text">技术点1：优雅的支持连接迁移能力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B92%EF%BC%9A-%E6%8F%90%E5%8D%870RTT%E6%8F%A1%E6%89%8B%E6%AF%94%E4%BE%8B"><span class="toc-number">5.2.2.2.</span> <span class="toc-text">技术点2： 提升0RTT握手比例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B93%EF%BC%9A%E6%94%AF%E6%8C%81QUIC%E6%97%A0%E6%8D%9F%E5%8D%87%E7%BA%A7"><span class="toc-number">5.2.2.3.</span> <span class="toc-text">技术点3：支持QUIC无损升级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B94%EF%BC%9A%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%99%BA%E8%83%BD%E9%80%89%E8%B7%AF"><span class="toc-number">5.2.2.4.</span> <span class="toc-text">技术点4：客户端智能选路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E8%87%AA%E7%A0%94XQUIC"><span class="toc-number">5.3.</span> <span class="toc-text">阿里自研XQUIC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MQTT-over-QUIC%EF%BC%9A%E4%B8%8B%E4%B8%80%E4%BB%A3%E7%89%A9%E8%81%94%E7%BD%91%E6%A0%87%E5%87%86%E5%8D%8F%E8%AE%AE%E4%B8%BA%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E5%9C%BA%E6%99%AF%E6%B3%A8%E5%85%A5%E6%96%B0%E5%8A%A8%E5%8A%9B"><span class="toc-number">5.4.</span> <span class="toc-text">MQTT over QUIC：下一代物联网标准协议为消息传输场景注入新动力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#QUIC%E5%9C%A8MQTT%E9%80%9A%E4%BF%A1%E5%9C%BA%E6%99%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">5.4.1.</span> <span class="toc-text">QUIC在MQTT通信场景中的应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#EMQX-5-0-%E7%9A%84-MQTT-over-QUIC-%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.4.2.</span> <span class="toc-text">EMQX 5.0 的 MQTT over QUIC 实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9ANanoSDK-0-6-0"><span class="toc-number">5.4.3.</span> <span class="toc-text">更便捷的使用：NanoSDK 0.6.0</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#AXP-QUIC%EF%BC%9A%E8%87%AA%E9%80%82%E5%BA%94X%E8%B7%AFQUIC%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F"><span class="toc-number">5.5.</span> <span class="toc-text">AXP-QUIC：自适应X路QUIC网络传输加速</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E8%BD%AF-MsQUIC"><span class="toc-number">5.6.</span> <span class="toc-text">微软 MsQUIC</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议"><img src="/img/QUIC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QUIC:超越TCP的新一代网络协议"/></a><div class="content"><a class="title" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议">QUIC:超越TCP的新一代网络协议</a><time datetime="2025-03-24T05:53:48.000Z" title="发表于 2025-03-24 13:53:48">2025-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server"><img src="/img/Globus.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="The Globus Striped GridFTP Framework and Server"/></a><div class="content"><a class="title" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server">The Globus Striped GridFTP Framework and Server</a><time datetime="2025-03-20T04:37:08.000Z" title="发表于 2025-03-20 12:37:08">2025-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/24/DPDK/" title="高效网络协议栈访问DPDK"><img src="/img/DPDK.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="高效网络协议栈访问DPDK"/></a><div class="content"><a class="title" href="/2025/02/24/DPDK/" title="高效网络协议栈访问DPDK">高效网络协议栈访问DPDK</a><time datetime="2025-02-24T05:53:48.000Z" title="发表于 2025-02-24 13:53:48">2025-02-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/QUIC.png);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Lu Wu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.3</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
+</article><div class="post-copyright"><div class="post-copyright__author"><span class="post-copyright-meta"><i class="fas fa-circle-user fa-fw"></i>文章作者: </span><span class="post-copyright-info"><a href="https://feifanyulu.github.io">Lu Wu</a></span></div><div class="post-copyright__type"><span class="post-copyright-meta"><i class="fas fa-square-arrow-up-right fa-fw"></i>文章链接: </span><span class="post-copyright-info"><a href="https://feifanyulu.github.io/2025/03/24/QUIC/">https://feifanyulu.github.io/2025/03/24/QUIC/</a></span></div><div class="post-copyright__notice"><span class="post-copyright-meta"><i class="fas fa-circle-exclamation fa-fw"></i>版权声明: </span><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来源 <a href="https://feifanyulu.github.io" target="_blank">Feifanyulu's blog</a>！</span></div></div><div class="tag_share"><div class="post-share"><div class="social-share" data-image="/img/QUIC.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/sharejs/dist/js/social-share.min.js" defer></script></div></div><nav class="pagination-post" id="pagination"><a class="pagination-related full-width" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server"><img class="cover" src="/img/Globus.png" onerror="onerror=null;src='/img/404.jpg'" alt="cover of previous post"><div class="info"><div class="info-1"><div class="info-item-1">上一篇</div><div class="info-item-2">The Globus Striped GridFTP Framework and Server</div></div><div class="info-2"><div class="info-item-1">​	GridFTP对文件传输协议的扩展定义了一种安全、可靠、高性能数据移动的通用机制。这里介绍了Globus的Striped GridFTP框架，旨在支持数据密集型工具和应用程序的建设。 The Globus Striped GridFTP Framework and Server | Proceedings of the 2005 ACM/IEEE conference on Supercomputing gridftp_final.pdf Introduction   存储在二级和三级存储系统上的数据的数量和多样性以及广域网的原始容量的迅速增加，使得至少在原则上在广域网上移动大量数据是可取的和可行的。   在实践中，协调这种转移在技术上具有挑战性。  a. 经常需要在多个维度上利用并行性，包括（取决于上下文）存储系统，网络接口和骨干网络干线。 b.处理各种各样的失败。防火墙、并行文件系统和其他专用设备也会造成困难，因为需要在传输之前和/或之后转换数据。 由于这些和其他原因，快速、高效和稳健的广域端到端传输需要在多个级别管理复杂的系统。例如，在最近的工作中，我们需要32台以1...</div></div></div></a></nav><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="waline-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lu Wu</div><div class="author-info-description">Maximize happiness, minimize troubles.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/feifanyulu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">1.</span> <span class="toc-text">HTTP发展史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">2.</span> <span class="toc-text">为什么需要QUIC？</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">3.</span> <span class="toc-text">QUIC生态圈发展简史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">4.</span> <span class="toc-text">QUIC协议详解</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%95%B0%E6%8D%AE%E5%8C%85%E7%BB%93%E6%9E%84"><span class="toc-number">4.1.</span> <span class="toc-text">数据包结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#0rtt%E5%BB%BA%E7%AB%8B%E8%BF%9E%E6%8E%A5"><span class="toc-number">4.2.</span> <span class="toc-text">0RTT建立连接</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%BF%9E%E6%8E%A5%E8%BF%81%E7%A7%BB"><span class="toc-number">4.3.</span> <span class="toc-text">连接迁移</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%9F%E5%A4%B4%E9%98%BB%E5%A1%9E-%E5%A4%9A%E8%B7%AF%E5%A4%8D%E7%94%A8"><span class="toc-number">4.4.</span> <span class="toc-text">队头阻塞&#x2F;多路复用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%A5%E5%A1%9E%E6%8E%A7%E5%88%B6"><span class="toc-number">4.5.</span> <span class="toc-text">拥塞控制</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%83%AD%E6%8F%92%E6%8B%94"><span class="toc-number">4.5.1.</span> <span class="toc-text">热插拔</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%8F%AF%E9%9D%A0%E6%80%A7%E4%BC%A0%E8%BE%93"><span class="toc-number">4.5.2.</span> <span class="toc-text">可靠性传输</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%B5%81%E9%87%8F%E6%8E%A7%E5%88%B6"><span class="toc-number">4.5.3.</span> <span class="toc-text">流量控制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B6%E4%BB%96"><span class="toc-number">4.6.</span> <span class="toc-text">其他</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#quic%E5%8D%8F%E8%AE%AE%E7%9A%84%E7%BC%BA%E7%82%B9"><span class="toc-number">4.7.</span> <span class="toc-text">QUIC协议的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">4.8.</span> <span class="toc-text">应用场景</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link"><span class="toc-number">5.</span> <span class="toc-text">基于QUIC的相关工作</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%85%BE%E8%AE%AFtquic%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE"><span class="toc-number">5.1.</span> <span class="toc-text">腾讯TQUIC网络传输协议</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#none"><span class="toc-number">5.1.0.1.</span> <span class="toc-text"></span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%9A%82%E8%9A%81%E9%9B%86%E5%9B%A2quic%E8%90%BD%E5%9C%B0"><span class="toc-number">5.2.</span> <span class="toc-text">蚂蚁集团QUIC落地</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%80%E5%A5%97%E8%90%BD%E5%9C%B0%E6%A1%86%E6%9E%B6"><span class="toc-number">5.2.1.</span> <span class="toc-text">一套落地框架</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%8A%80%E6%9C%AF"><span class="toc-number">5.2.2.</span> <span class="toc-text">关键技术</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B91%EF%BC%9A%E4%BC%98%E9%9B%85%E7%9A%84%E6%94%AF%E6%8C%81%E8%BF%9E%E6%8E%A5%E8%BF%81%E7%A7%BB%E8%83%BD%E5%8A%9B"><span class="toc-number">5.2.2.1.</span> <span class="toc-text">技术点1：优雅的支持连接迁移能力</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B92%EF%BC%9A-%E6%8F%90%E5%8D%870rtt%E6%8F%A1%E6%89%8B%E6%AF%94%E4%BE%8B"><span class="toc-number">5.2.2.2.</span> <span class="toc-text">技术点2： 提升0RTT握手比例</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B93%EF%BC%9A%E6%94%AF%E6%8C%81quic%E6%97%A0%E6%8D%9F%E5%8D%87%E7%BA%A7"><span class="toc-number">5.2.2.3.</span> <span class="toc-text">技术点3：支持QUIC无损升级</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%8A%80%E6%9C%AF%E7%82%B94%EF%BC%9A%E5%AE%A2%E6%88%B7%E7%AB%AF%E6%99%BA%E8%83%BD%E9%80%89%E8%B7%AF"><span class="toc-number">5.2.2.4.</span> <span class="toc-text">技术点4：客户端智能选路</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%98%BF%E9%87%8C%E8%87%AA%E7%A0%94xquic"><span class="toc-number">5.3.</span> <span class="toc-text">阿里自研XQUIC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#mqtt-over-quic%EF%BC%9A%E4%B8%8B%E4%B8%80%E4%BB%A3%E7%89%A9%E8%81%94%E7%BD%91%E6%A0%87%E5%87%86%E5%8D%8F%E8%AE%AE%E4%B8%BA%E6%B6%88%E6%81%AF%E4%BC%A0%E8%BE%93%E5%9C%BA%E6%99%AF%E6%B3%A8%E5%85%A5%E6%96%B0%E5%8A%A8%E5%8A%9B"><span class="toc-number">5.4.</span> <span class="toc-text">MQTT over QUIC：下一代物联网标准协议为消息传输场景注入新动力</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#quic%E5%9C%A8mqtt%E9%80%9A%E4%BF%A1%E5%9C%BA%E6%99%AF%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8%E5%9C%BA%E6%99%AF"><span class="toc-number">5.4.1.</span> <span class="toc-text">QUIC在MQTT通信场景中的应用场景</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#emqx-5-0-%E7%9A%84-mqtt-over-quic-%E5%AE%9E%E7%8E%B0"><span class="toc-number">5.4.2.</span> <span class="toc-text">EMQX 5.0 的 MQTT over QUIC 实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E4%BE%BF%E6%8D%B7%E7%9A%84%E4%BD%BF%E7%94%A8%EF%BC%9Ananosdk-0-6-0"><span class="toc-number">5.4.3.</span> <span class="toc-text">更便捷的使用：NanoSDK 0.6.0</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#axp-quic%EF%BC%9A%E8%87%AA%E9%80%82%E5%BA%94x%E8%B7%AFquic%E7%BD%91%E7%BB%9C%E4%BC%A0%E8%BE%93%E5%8A%A0%E9%80%9F"><span class="toc-number">5.5.</span> <span class="toc-text">AXP-QUIC：自适应X路QUIC网络传输加速</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E8%BD%AF-msquic"><span class="toc-number">5.6.</span> <span class="toc-text">微软 MsQUIC</span></a></li></ol></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议"><img src="/img/QUIC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QUIC:超越TCP的新一代网络协议"/></a><div class="content"><a class="title" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议">QUIC:超越TCP的新一代网络协议</a><time datetime="2025-03-24T05:53:48.000Z" title="发表于 2025-03-24 13:53:48">2025-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server"><img src="/img/Globus.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="The Globus Striped GridFTP Framework and Server"/></a><div class="content"><a class="title" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server">The Globus Striped GridFTP Framework and Server</a><time datetime="2025-03-20T04:37:08.000Z" title="发表于 2025-03-20 12:37:08">2025-03-20</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/02/24/Attention/" title="transformer详读"><img src="/img/transformer.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="transformer详读"/></a><div class="content"><a class="title" href="/2025/02/24/Attention/" title="transformer详读">transformer详读</a><time datetime="2025-02-24T05:53:48.000Z" title="发表于 2025-02-24 13:53:48">2025-02-24</time></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/QUIC.png);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Lu Wu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.3</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="前往评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"><script>(() => {
   const loadMathjax = () => {
     if (!window.MathJax) {
       window.MathJax = {
