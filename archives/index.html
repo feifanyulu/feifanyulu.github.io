@@ -1,4 +1,4 @@
-<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Archives | Feifanyulu's blog</title><meta name="author" content="Lu Wu"><meta name="copyright" content="Lu Wu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#ffffff"><meta name="description" content="Maximize happiness, minimize troubles.">
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Archives | Feifanyulu's blog</title><meta name="author" content="Lu Wu"><meta name="copyright" content="Lu Wu"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#fff8f5"><meta name="description" content="Maximize happiness, minimize troubles.">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Archives">
 <meta property="og:url" content="https://feifanyulu.github.io/archives/index.html">
@@ -66,13 +66,13 @@
       const activateDarkMode = () => {
         document.documentElement.setAttribute('data-theme', 'dark')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#1e0f0a')
         }
       }
       const activateLightMode = () => {
         document.documentElement.setAttribute('data-theme', 'light')
         if (document.querySelector('meta[name="theme-color"]') !== null) {
-          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#ffffff')
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#fff8f5')
         }
       }
 
@@ -81,7 +81,10 @@
 
       const theme = saveToLocal.get('theme')
     
-          theme === 'dark' ? activateDarkMode() : theme === 'light' ? activateLightMode() : null
+          const hour = new Date().getHours()
+          const isNight = hour <= 6 || hour >= 18
+          if (theme === undefined) isNight ? activateDarkMode() : activateLightMode()
+          else theme === 'light' ? activateLightMode() : activateDarkMode()
         
       
       const asideStatus = saveToLocal.get('aside-status')
@@ -133,7 +136,7 @@
   isAnchor: false,
   percent: {
     toc: true,
-    rightside: false,
+    rightside: true,
   },
   autoDarkmode: false
 }</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
@@ -141,7 +144,7 @@
   isHighlightShrink: true,
   isToc: false,
   pageType: 'archive'
-}</script><meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-image: url(/img/leaf.jpg);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Feifanyulu's blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">Archives</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">全部文章 - 7</div><div class="article-sort"><div class="article-sort-item year">2025</div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/06/24/Attention/" title="transformer详读"><img src="/img/transformer.png" alt="transformer详读" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-06-24T11:53:48.000Z" title="发表于 2025-06-24 19:53:48">2025-06-24</time></div><a class="article-sort-item-title" href="/2025/06/24/Attention/" title="transformer详读">transformer详读</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议"><img src="/img/QUIC.png" alt="QUIC:超越TCP的新一代网络协议" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-03-24T05:53:48.000Z" title="发表于 2025-03-24 13:53:48">2025-03-24</time></div><a class="article-sort-item-title" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议">QUIC:超越TCP的新一代网络协议</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server"><img src="/img/Globus.png" alt="The Globus Striped GridFTP Framework and Server" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-03-20T04:37:08.000Z" title="发表于 2025-03-20 12:37:08">2025-03-20</time></div><a class="article-sort-item-title" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server">The Globus Striped GridFTP Framework and Server</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/02/24/DPDK/" title="高效网络协议栈访问DPDK"><img src="/img/DPDK.png" alt="高效网络协议栈访问DPDK" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-02-24T05:53:48.000Z" title="发表于 2025-02-24 13:53:48">2025-02-24</time></div><a class="article-sort-item-title" href="/2025/02/24/DPDK/" title="高效网络协议栈访问DPDK">高效网络协议栈访问DPDK</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/02/22/hexo-butterfly/" title="hexo+butterfly搭建"><img src="/img/leaf.png" alt="hexo+butterfly搭建" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-02-22T13:20:01.000Z" title="发表于 2025-02-22 21:20:01">2025-02-22</time></div><a class="article-sort-item-title" href="/2025/02/22/hexo-butterfly/" title="hexo+butterfly搭建">hexo+butterfly搭建</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/02/20/centos7-3%E9%83%A8%E7%BD%B2lustre2-10-8/" title="centos7.3部署lustre2.10.8"><img src="/img/LustreComponents21.gif" alt="centos7.3部署lustre2.10.8" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-02-20T12:36:46.000Z" title="发表于 2025-02-20 20:36:46">2025-02-20</time></div><a class="article-sort-item-title" href="/2025/02/20/centos7-3%E9%83%A8%E7%BD%B2lustre2-10-8/" title="centos7.3部署lustre2.10.8">centos7.3部署lustre2.10.8</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/02/19/Compilation-Principle/" title="编译原理"><img src="/img/compiler.png" alt="编译原理" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-02-19T11:24:02.000Z" title="发表于 2025-02-19 19:24:02">2025-02-19</time></div><a class="article-sort-item-title" href="/2025/02/19/Compilation-Principle/" title="编译原理">编译原理</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lu Wu</div><div class="author-info-description">Maximize happiness, minimize troubles.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/feifanyulu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/24/Attention/" title="transformer详读"><img src="/img/transformer.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="transformer详读"/></a><div class="content"><a class="title" href="/2025/06/24/Attention/" title="transformer详读">transformer详读</a><time datetime="2025-06-24T11:53:48.000Z" title="发表于 2025-06-24 19:53:48">2025-06-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议"><img src="/img/QUIC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QUIC:超越TCP的新一代网络协议"/></a><div class="content"><a class="title" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议">QUIC:超越TCP的新一代网络协议</a><time datetime="2025-03-24T05:53:48.000Z" title="发表于 2025-03-24 13:53:48">2025-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server"><img src="/img/Globus.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="The Globus Striped GridFTP Framework and Server"/></a><div class="content"><a class="title" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP Framework and Server">The Globus Striped GridFTP Framework and Server</a><time datetime="2025-03-20T04:37:08.000Z" title="发表于 2025-03-20 12:37:08">2025-03-20</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
+}</script><link rel="stylesheet" href="/css/wave.css"><link rel="stylesheet" href="/css/custom.css" media="defer" onload="this.media='all'"><link rel="stylesheet" href="/css/universe.css"><link rel="stylesheet" href="/css/mouse.css"><meta name="generator" content="Hexo 7.3.0"><link href="https://cdn.bootcss.com/KaTeX/0.11.1/katex.min.css" rel="stylesheet" /></head><body><div id="web_bg" style="background-image: url(/img/index_img.jpg);"></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img text-center"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="site-data text-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div></div></div><div class="page" id="body-wrap"><header class="not-home-page" id="page-header" style="background-color: rgba(0, 0, 0, 0);"><nav id="nav"><span id="blog-info"><a class="nav-site-title" href="/"><span class="site-name">Feifanyulu's blog</span></a></span><div id="menus"><div id="search-button"><span class="site-page social-icon search"><i class="fas fa-search fa-fw"></i><span> 搜索</span></span></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fa fa-home"></i><span> Home</span></a></div><div class="menus_item"><a class="site-page" href="/archives/"><i class="fa-fw fa fa-archive"></i><span> Archives</span></a></div><div class="menus_item"><a class="site-page" href="/messageboard/"><i class="fa-fw fa fa-paper-plane"></i><span> messageboard</span></a></div><div class="menus_item"><a class="site-page" href="/link/"><i class="fa-fw fa fa-link"></i><span> blogroll</span></a></div><div class="menus_item"><a class="site-page" href="/myself/"><i class="fa-fw fa fa-id-card"></i><span> Myself</span></a></div></div><div id="toggle-menu"><span class="site-page"><i class="fas fa-bars fa-fw"></i></span></div></div></nav><div id="page-site-info"><h1 id="site-title">Archives</h1></div></header><main class="layout" id="content-inner"><div id="archive"><div class="article-sort-title">全部文章 - 7</div><div class="article-sort"><div class="article-sort-item year">2025</div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/06/24/Attention/" title="transformer详读"><img src="/img/transformer.png" alt="transformer详读" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-06-24T11:53:48.000Z" title="发表于 2025-06-24 19:53:48">2025-06-24</time></div><a class="article-sort-item-title" href="/2025/06/24/Attention/" title="transformer详读">transformer详读</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议"><img src="/img/QUIC.png" alt="QUIC:超越TCP的新一代网络协议" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-03-24T05:53:48.000Z" title="发表于 2025-03-24 13:53:48">2025-03-24</time></div><a class="article-sort-item-title" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议">QUIC:超越TCP的新一代网络协议</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP"><img src="/img/Globus.png" alt="The Globus Striped GridFTP" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-03-20T04:37:08.000Z" title="发表于 2025-03-20 12:37:08">2025-03-20</time></div><a class="article-sort-item-title" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP">The Globus Striped GridFTP</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/02/24/DPDK/" title="高效网络协议栈访问DPDK"><img src="/img/DPDK.png" alt="高效网络协议栈访问DPDK" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-02-24T05:53:48.000Z" title="发表于 2025-02-24 13:53:48">2025-02-24</time></div><a class="article-sort-item-title" href="/2025/02/24/DPDK/" title="高效网络协议栈访问DPDK">高效网络协议栈访问DPDK</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/02/22/hexo-butterfly/" title="Hexo+Butterfly搭建"><img src="/img/leaf.png" alt="Hexo+Butterfly搭建" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-02-22T13:20:01.000Z" title="发表于 2025-02-22 21:20:01">2025-02-22</time></div><a class="article-sort-item-title" href="/2025/02/22/hexo-butterfly/" title="Hexo+Butterfly搭建">Hexo+Butterfly搭建</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/02/20/centos7-3%E9%83%A8%E7%BD%B2lustre2-10-8/" title="centos7.3部署lustre2.10.8"><img src="/img/LustreComponents21.gif" alt="centos7.3部署lustre2.10.8" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-02-20T12:36:46.000Z" title="发表于 2025-02-20 20:36:46">2025-02-20</time></div><a class="article-sort-item-title" href="/2025/02/20/centos7-3%E9%83%A8%E7%BD%B2lustre2-10-8/" title="centos7.3部署lustre2.10.8">centos7.3部署lustre2.10.8</a></div></div><div class="article-sort-item"><a class="article-sort-item-img" href="/2025/02/19/Compilation-Principle/" title="编译原理"><img src="/img/compiler.png" alt="编译原理" onerror="this.onerror=null;this.src='/img/404.jpg'"></a><div class="article-sort-item-info"><div class="article-sort-item-time"><i class="far fa-calendar-alt"></i><time class="post-meta-date-created" datetime="2025-02-19T11:24:02.000Z" title="发表于 2025-02-19 19:24:02">2025-02-19</time></div><a class="article-sort-item-title" href="/2025/02/19/Compilation-Principle/" title="编译原理">编译原理</a></div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info text-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info-name">Lu Wu</div><div class="author-info-description">Maximize happiness, minimize troubles.</div><div class="site-data"><a href="/archives/"><div class="headline">文章</div><div class="length-num">7</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">1</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">4</div></a></div><a id="card-info-btn" target="_blank" rel="noopener" href="https://github.com/feifanyulu"><i class="fab fa-github"></i><span>Follow Me</span></a></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/2025/06/24/Attention/" title="transformer详读"><img src="/img/transformer.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="transformer详读"/></a><div class="content"><a class="title" href="/2025/06/24/Attention/" title="transformer详读">transformer详读</a><time datetime="2025-06-24T11:53:48.000Z" title="发表于 2025-06-24 19:53:48">2025-06-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议"><img src="/img/QUIC.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="QUIC:超越TCP的新一代网络协议"/></a><div class="content"><a class="title" href="/2025/03/24/QUIC/" title="QUIC:超越TCP的新一代网络协议">QUIC:超越TCP的新一代网络协议</a><time datetime="2025-03-24T05:53:48.000Z" title="发表于 2025-03-24 13:53:48">2025-03-24</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP"><img src="/img/Globus.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="The Globus Striped GridFTP"/></a><div class="content"><a class="title" href="/2025/03/20/Globus-GridFTP/" title="The Globus Striped GridFTP">The Globus Striped GridFTP</a><time datetime="2025-03-20T04:37:08.000Z" title="发表于 2025-03-20 12:37:08">2025-03-20</time></div></div></div></div><div class="card-widget" id="card-newest-comments"><div class="item-headline"><i class="fas fa-comment-dots"></i><span>最新评论</span></div><div class="aside-list"><span>加载中...</span></div></div><div class="card-widget card-categories"><div class="item-headline">
             <i class="fas fa-folder-open"></i>
             <span>分类</span>
             
@@ -185,7 +188,123 @@
         </li>
       
     </ul>
-  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-04T08:13:36.321Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-image: url(/img/leaf.jpg);"><div id="footer-wrap"><div class="copyright">&copy;2019 - 2025 By Lu Wu</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener" href="https://hexo.io">Hexo 7.3.0</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly 5.3.3</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script>window.newestComments = {
+  </div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站信息</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">7</div></div><div class="webinfo-item"><div class="item-name">本站访客数 :</div><div class="item-count" id="busuanzi_value_site_uv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总浏览量 :</div><div class="item-count" id="busuanzi_value_site_pv"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-07-05T15:22:17.424Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer" style="background-color: rgba(193, 68, 14, 0.1);"><div id="footer-wrap"><div class="footer_custom_text"><style>
+  .footer {
+    text-align: center;
+    position: relative;
+  }
+  .social-links {
+    display: flex;
+    justify-content: center;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .social-links i {
+    color: #FF6347;
+  }
+  .social-link {
+    color: #FF7F50;
+    font-size: 1.2rem;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(255, 160, 122, 0.1);
+  }
+  .social-link:hover {
+    color: #FFA07A;
+    background: #FFA07A;
+    transform: translateY(-3px) scale(1.2);
+    box-shadow: 0 5px 15px rgba(138, 43, 226, 0.4);
+    text-decoration: none !important; 
+  }
+  .footer p {
+    margin: 0.5rem 0;
+    line-height: 1;
+  }
+  .copyright {
+    font-size: 1.1rem; 
+    color: #FFA07A;
+    font-weight: 400;
+  }
+  .tagline {
+    font-size: 0.8rem;
+    color: #FF6347;
+    font-style: italic;
+    font-weight: 500;
+  }
+  .visitor-count {
+    font-size: 0.75rem;
+    color: rgba(255, 160, 122, 0.858);
+    font-weight: 300;
+  }
+  #visitorCount {
+    font-weight: bold;
+  }
+</style>
+<div class="footer">
+  <div class="social-links">
+    <a href="https://github.com/feifanyulu" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="GitHub" title="GitHub">
+      <i class="fab fa-github"></i>
+    </a>
+    <a href="https://blog.csdn.net/qq_52170360" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="CSDN" title="CSDN">
+      <i class="fas fa-code"></i>
+    </a>
+    <a href="https://space.bilibili.com/674865028" class="social-link" target="_blank" rel="noopener noreferrer" aria-label="bilibili" title="bilibili">
+      <i class="fab fa-bilibili"></i>
+    </a>
+  </div>
+  <p class="copyright">© 2025 Feifanyuluのblog - 所有权利保留</p>
+  <p class="tagline">> Stay curious, stay hacking, stay anime! <</p>
+  <p class="visitor-count">访问量: <span id="visitorCount">1024</span> | 你是第 <span id="dailyVisitor">1</span> 位今日访客</p>
+</div>
+<script>
+  // 确保DOM加载完成后执行
+  document.addEventListener('DOMContentLoaded', function() {
+    // 模拟访问量增长
+    function updateVisitorCount() {
+      const countElement = document.getElementById('visitorCount');
+      let count = parseInt(countElement.textContent) || 1024;
+      // 从localStorage获取或初始化计数
+      const storedCount = localStorage.getItem('totalVisitors');
+      if (storedCount) {
+        count = parseInt(storedCount);
+        countElement.textContent = count;
+      }
+      // 每日访客计数
+      const today = new Date().toDateString();
+      const dailyData = JSON.parse(localStorage.getItem('dailyVisitors') || '{"date":"", "count":0}');
+      if (dailyData.date !== today) {
+        dailyData.date = today;
+        dailyData.count = 0;
+      }
+      dailyData.count += 1;
+      document.getElementById('dailyVisitor').textContent = dailyData.count;
+      localStorage.setItem('dailyVisitors', JSON.stringify(dailyData));
+      // 每30秒随机增加访问量
+      setInterval(() => {
+        count += Math.floor(Math.random() * 3);
+        countElement.textContent = count;
+        localStorage.setItem('totalVisitors', count.toString());
+      }, 30000);
+    }
+    updateVisitorCount();
+    // 添加点击动画效果
+    const socialLinks = document.querySelectorAll('.social-link');
+    socialLinks.forEach(link => {
+      link.addEventListener('click', function() {
+        this.style.transform = 'scale(0.9)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 300);
+      });
+    });
+  });
+</script>
+</div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="日间和夜间模式切换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="https://cdn.jsdelivr.net/npm/node-snackbar/dist/snackbar.min.js"></script><div class="js-pjax"></div><script>window.newestComments = {
   changeContent: content => {
     if (content === '') return content
 
@@ -270,4 +389,4 @@
   }
 
   run(keyName, getComment)
-})</script><canvas class="fireworks" mobile="false"></canvas><script src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/fireworks.min.js"></script><script id="click-heart" src="https://cdn.jsdelivr.net/npm/butterfly-extsrc/dist/click-heart.min.js" async="async" mobile="false"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
+})</script><canvas id="universe"></canvas><script defer src="/js/universe.js"></script><script src="/js/sakura.js"></script><script defer src="/js/cursor.js"></script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="text-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js"></script></div></div></body></html>
