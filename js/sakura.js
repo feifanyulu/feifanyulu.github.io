@@ -14,7 +14,7 @@ Sakura.prototype.draw = function (cxt) {
     var xc = 40 * this.s / 4;
     cxt.translate(this.x, this.y);
     cxt.rotate(this.r);
-    cxt.drawImage(img, 0, 0, 40 * this.s, 40 * this.s)
+    cxt.drawImage(img, 0, 0, 30 * this.s, 30 * this.s)
     cxt.restore();
 }
 Sakura.prototype.update = function () {
@@ -108,7 +108,7 @@ function startSakura() {
     document.getElementsByTagName('body')[0].appendChild(canvas);
     cxt = canvas.getContext('2d');
     var sakuraList = new SakuraList();
-    for (var i = 0; i < 50; i++) {
+    for (var i = 0; i < 30; i++) {
         var sakura, randomX, randomY, randomS, randomR, randomFnx, randomFny;
         randomX = getRandom('x');
         randomY = getRandom('y');
