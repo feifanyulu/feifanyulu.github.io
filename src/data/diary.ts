@@ -16,10 +16,18 @@ const diaryData: DiaryItem[] = [
 	{
 		id: 1,
 		content:
-			"The falling speed of cherry blossoms is five centimeters per second!",
-		date: "2025-01-15T10:30:00Z",
-		images: ["/images/diary/sakura.jpg", "/images/diary/1.jpg"],
+			"今天是平凡的一天",
+		date: "2026-02-05T00:30:00Z",
+		// images: ["/images/diary/sakura.jpg", "/images/diary/1.jpg"],
 	},
+	// {
+	// 	id: 2,
+	// 	content:
+	// 		"The falling speed of cherry blossoms is five centimeters per second!",
+	// 	date: "2025-01-15T10:30:00Z",
+	// 	images: ["/images/diary/sakura.jpg", "/images/diary/1.jpg"],
+	// },
+	
 ];
 
 // 获取日记统计数据
