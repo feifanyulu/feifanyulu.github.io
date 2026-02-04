@@ -315,7 +315,7 @@ export type AnnouncementConfig = {
 	content: string; // 公告栏内容
 	icon?: string; // 公告栏图标
 	type?: "info" | "warning" | "success" | "error"; // 公告类型
-	closable?: boolean; // 是否可关闭
+	closable?: boolean; // 是否可关闭shifou1
 	link?: {
 		enable: boolean; // 是否启用链接
 		text: string; // 链接文字
@@ -325,7 +325,7 @@ export type AnnouncementConfig = {
 };
 
 export type MusicPlayerConfig = {
-	enable: false; // 是否启用音乐播放器功能
+	enable: false; // 是否启用音乐播放器功能  
 	mode: "meting" | "local"; // 音乐播放器模式
 	meting_api: string; // Meting API 地址
 	id: string; // 歌单ID
