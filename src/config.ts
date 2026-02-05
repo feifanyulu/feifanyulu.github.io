@@ -215,9 +215,9 @@ export const siteConfig: SiteConfig = {
 		},
 		cjkFont: {
 			// 中日韩字体 - 作为回退字体
-			fontFamily: "王汉宗粗楷体简",
+			fontFamily: "霞鹜文楷CN",
 			fontWeight: "500",
-			localFonts: ["王汉宗粗楷体简.ttf"],
+			localFonts: ["霞鹜文楷CN.ttf"],
 			enableCompress: true, // 启用字体子集优化，减少字体文件大小
 		},
 	},

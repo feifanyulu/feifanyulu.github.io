@@ -35,6 +35,15 @@
   font-display: swap;
 }
 
+/* 导入 萝莉体 第二版 字体 */
+@font-face {
+  font-family: "霞鹜文楷CN";
+  src: url("/assets/font/霞鹜文楷CN.woff2") format("woff2");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
